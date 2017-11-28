@@ -1,5 +1,5 @@
 <html>
- <script src="jquery-1.11.0.min.js" type="text/javascript"></script>
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
 <body>
 
 <table id="table1" align="center">
@@ -111,14 +111,14 @@
 </select>
 </td>
 <td class="wp_state">
-卡片1:<select class="eq_card1">
+<!--卡片1:<select class="eq_card1">
 <option value="0">無</option>
 </select>
 <br/>
 卡片2:<select class="eq_card2">
 <option value="0">無</option>
 
-</select>
+</select>-->
 </td>
 </tr>
 <tr height="44">
@@ -620,8 +620,8 @@ $(".eq").each(function(){
 if($(this).hasClass("on")){
 
 BG_EQ+=parseInt($(this).find(".eq_level").val());
-BG_EQ+=parseInt($(this).find(".eq_card1").val());
-BG_EQ+=parseInt($(this).find(".eq_card2").val());
+if($(this).find(".eq_card1").length>0)BG_EQ+=parseInt($(this).find(".eq_card1").val());
+if($(this).find(".eq_card2").length>0)BG_EQ+=parseInt($(this).find(".eq_card2").val());
 }
 
 });
