@@ -1,14 +1,20 @@
 <link href="https://fonts.googleapis.com/css?family=VT323" rel="stylesheet">
 <style>
+html,body{background:#efefef;margin:20px auto; max-width:320px;font-family: "Microsoft JhengHei";}
+.block{
+display:inline-block;
+position:relative;
+
+}
 .act{
-width:68px;
-height:58px;
+width:100px;
+height:85px;
 text-align:center;
 opacity:0;
 position:absolute;
 top:100px;
-left:0px;
-line-height:58px;
+left:100px;
+line-height:85px;
 font-size:24px;
           transition: top 0s ease-out,opaity 0s ease-out,background 0s ease-out;
 		  font-family:'VT323';
@@ -26,20 +32,22 @@ font-size:24px;
 .act.criti{
 background:url("criti.png") center center no-repeat;
 color:#FF0;
+background-size:100px 85px;
 }
 .act.on{
-opacity:1;
+opacity:.9;
 top:0px;
 z-index:2;
    transition: top 1s ease-out,opacity  0s ease-out,background 0s ease-out,left 2s ease-out;
 }
 .act.r{
-left:150px;
-transition: top 3s ease-out,opacity  0s ease-out,background 0s ease-out,left 2.5s ease-out;
+left:250px;
+transition: top 3s ease-out,opacity  0s ease-out,background 0s ease-out,left 2.5s ease-out,background-size 0.2s;
+background-size:68px 58px;
 }
 .act.b{
 top:300px;
-transition: top 3s ease-out,opacity  1s ease-out,background 0s ease-out,left 2.5s ease-out;
+transition: top 3s ease-out,opacity  1s ease-out,background 0s ease-out,left 2.5s ease-out,background-size 0.2s;
 opacity:0;
 }
 
@@ -49,26 +57,29 @@ z-index:1;
 }
 .act_wrap{
 position:relative;
+height:200px;
+width:320px;
+background:#ddd;
+}
 
-height:300px;
+#monster{
+position:absolute;
+top:150px;
+margin-left:-50px;
+margin-top:-50px;
+left:50%;
+transition: all 0.5s ease-out;
+}
+#monster.on{
+margin-left:-40px;
 }
 </style>
-
+<h1>RO手遊:攻速暴擊模擬</h1>
 <div class="act_wrap">
-<div id="act1" class="act">999</div>
-<div id="act2" class="act">999</div>
-<div id="act3" class="act">999</div>
-<div id="act4" class="act">999</div>
-<div id="act5" class="act">999</div>
-<div id="act6" class="act">999</div>
-<div id="act7" class="act">999</div>
-<div id="act8" class="act">999</div>
-<div id="act9" class="act">999</div>
-<div id="act10" class="act">999</div>
-
 
 </div>
-<input id="isCK" type="checkbox"/><br/>
+
+<input id="isCK" type="checkbox"/>刺客<br/>
 功速<input id="aspd" value="100"/><br/>
 暴擊<input id="criti" value="1"/><br/>
 <button id="btn">重啟</button><button id="stop">停止</button>
@@ -83,17 +94,19 @@ height:300px;
  var isC=false
  html="";
  
- acts=30
+ acts=30;
  for(i=1;i<=acts;i++){
  html+='<div id="act'+i+'" class="act">500</div>'
  }
+ html+='<img id="monster" src="poring.gif">'
  $(".act_wrap").html(html)
  function loop(){
  timer=setTimeout(function(){
+ $("#monster").addClass("on").attr("src","poring_h.gif");
  
   $("#act"+now).addClass("on");
    
-  console.log(isCK)
+  
   if(isCK){
   if(now%2==0){
   wait=1000/aspd*100-400/aspd*100+120;
@@ -116,9 +129,12 @@ height:300px;
   var close=now
   
   setTimeout(function(){$("#act"+close).removeClass("on criti sec r b");},2000);
-  setTimeout(function(){ $("#act"+close).addClass("sec");},100);
-  setTimeout(function(){ $("#act"+close).addClass("r");},300);
-  setTimeout(function(){ $("#act"+close).addClass("b");},1000);
+  setTimeout(function(){ 
+  $("#act"+close).addClass("sec");},100);
+  setTimeout(function(){ $("#act"+close).addClass("r");
+   $("#monster").removeClass("on").attr("src","poring.gif");
+  },300);
+  setTimeout(function(){  $("#act"+close).addClass("b");},1000);
   
 var audio = new Audio('Critical_Flesh_01.ogg');
 	audio.play();
