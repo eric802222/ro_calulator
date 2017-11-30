@@ -70,8 +70,9 @@ z-index:1;
 .act_wrap{
 position:relative;
 height:200px;
-width:320px;
+width:300px;
 background:#ddd;
+margin:0 auto
 }
 
 #monster{
@@ -85,16 +86,29 @@ transition: all 0.5s ease-out;
 #monster.on{
 margin-left:-40px;
 }
+.wrap{
+padding:0px 10px;
+width:320px; margin:0 auto;
+font-family: 'Courier',"Microsoft JhengHei";
+}
+.col{margin:0 -10px;	}
+button{width:140px;margin:0 10px;padding:5px 0px;}
+
 </style>
 <h1>RO手遊:攻速暴擊模擬</h1>
 <div class="act_wrap">
 
 </div>
-
-<input id="isCK" type="checkbox"/>刺客<br/>
-功速<input id="aspd" value="100"/><br/>
-暴擊<input id="criti" value="1"/><br/>
-<button id="btn">重啟</button><button id="stop">停止</button>
+<div class="wrap">
+<br/>
+<p>攻速: <input id="aspd" value="100"/></p>
+<p>暴擊: <input id="criti" value="1"/></p>
+<p>&emsp;&emsp;&nbsp;&nbsp;<input id="isCK" type="checkbox"/>刺客攻擊模式</p>
+<br/>
+<div class="col">
+<button id="btn">模擬</button><button id="stop">停止</button>
+</div>
+</div>
  <script>
  var isCK=true;
  var criti=98
