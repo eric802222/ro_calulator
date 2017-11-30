@@ -28,11 +28,11 @@
 <div class="block " >
 <table  align="center" style="background:#FFF;text-align:center;">
 <tr height="30">
-<td width="124">LUK爆擊</td>
+<td width="124">LUK爆率</td>
 <td id="BG_LUK">0</td>
 </tr>
 <tr height="30">
-<td >裝備爆擊</td>
+<td >裝備爆率</td>
 <td  id="BG_EQ">0</td>
 </tr>
 <tr height="30">
@@ -43,15 +43,15 @@
 </div>
 <div class="block no-boder dis_m" >
 <table  align="center" style="background:transparent;text-align:left;">
-<tr height="30">
-<td>(總Luck/3)	</td>
-</tr>
-<tr height="30">
-<td ></td>
+<tr height="30"  style="font-size:12px;">
+<td>= (LUK + BUFF加總)/3	</td>
+</tr> 
+<tr height="30" style="font-size:12px;">
+<td >= 裝備加總 + 料理加總 + 寵物加總	</td>
 
 </tr>
-<tr height="30">
-<td >最終爆率 (1+Luck爆率+裝備爆率)x2	</td>
+<tr height="30" style="font-size:12px;">
+<td >= (1 + LUK爆率 + 裝備爆率) x2(拳刃加倍)	</td>
 
 </tr>
 </table>
@@ -237,12 +237,12 @@ LV:<select class="eq_level" style="width:40px;">
 <td class="wp_state">
 卡片1:<select class="eq_card1">
 <option value="0">無</option>
-<option value="9">邪骸士兵卡</option>
+<option value="9">邪骸士兵</option>
 </select>
 <br/>
 卡片2:<select class="eq_card2" >
 <option value="0">無</option>
-<option value="9">邪骸士兵卡</option>
+<option value="9">邪骸士兵</option>
 
 </select>
 </td>
@@ -310,12 +310,12 @@ LV:<select class="eq_level" style="width:40px;">
 <tr id="fb_LUK_A" height="44" class="buff bf_radio add_BG_EQ" data-per="10" data-radio="fd_LUK">
 <td class="icon"><img src="fd_LUK_A.png" width="40"></td>
 <td>幸運料理A</td>
-<td>+10</td>
+<td>裝備爆率 +10</td>
 </tr>
 <tr id="fb_LUK_B" height="44" class="buff bf_radio add_BG_EQ" data-per="20" data-radio="fd_LUK">
 <td class="icon"><img src="fd_LUK_B.png" width="40"></td>
 <td>幸運料理B</td>
-<td>+20</td>
+<td>裝備爆率 +20</td>
 </tr>
 
 </table>
@@ -345,7 +345,7 @@ LV:<select class="eq_level" style="width:40px;">
 <div class="bf_level"></div>
 </td>
 <td>幸運之歌頌</td>
-<td >LUK爆擊+<span class="bf_count"></span></td>
+<td >LUK爆率 +<span class="bf_count">0</span></td>
 </tr>
 <tr height="44">
 <td></td>
@@ -382,7 +382,7 @@ LV:<select class="eq_level" style="width:40px;">
 <div class="bf_level"></div>
 </td>
 <td>曼陀羅</td>
-<td >裝備爆擊+<span class="bf_count"></span></td>
+<td >裝備爆率 +<span class="bf_count">0</span></td>
 </tr>
 <tr height="44">
 <td></td>
@@ -739,6 +739,13 @@ $("#BG_FINAL").html(Math.floor((1+BG_LUK/3+BG_EQ)));
 
 count();
 
+function setSelectorByText($ele,level){
+var val=$ele.find('option').filter(function () { return $(this).html() == level; }).val();
+console.log(level+":"+val)
+$ele.val(val);
+refreshEq($ele.closest(".eq"));
+}
+
 
 $("#suit_type").change(function(){
 $(".buff").removeClass("on");
@@ -759,8 +766,8 @@ $("#SAT_LUK").val(42);
 
 //武器
 $("#eq_CTCR").addClass("on");
-$("#eq_CTCR").find(".eq_level").val(5);
-refreshEq($("#eq_CTCR"));
+setSelectorByText($("#eq_CTCR").find(".eq_level"),"I");
+
 
 $(".buff").removeClass("on");
 //天賜
@@ -784,12 +791,11 @@ $("#SAT_LUK").val(33);
 
 //武器
 $("#eq_CTCR").addClass("on");
-$("#eq_CTCR").find(".eq_level").val(10);
-refreshEq($("#eq_CTCR"));
+setSelectorByText($("#eq_CTCR").find(".eq_level"),"III");
 
 //副手
 $("#eq_JSSH").addClass("on");
-$("#eq_JSSH").find(".eq_level").val(8);
+setSelectorByText($("#eq_JSSH").find(".eq_level"),"III");
 
 //天賜
 $("#bf_LUK").addClass("on");
@@ -812,13 +818,11 @@ $("#SAT_LUK").val(3);
 
 //武器
 $("#eq_CTCR").addClass("on");
-$("#eq_CTCR").find(".eq_level").val(10);
-refreshEq($("#eq_CTCR"));
+setSelectorByText($("#eq_CTCR").find(".eq_level"),"III");
 
 //副手
 $("#eq_JSSH").addClass("on");
-$("#eq_JSSH").find(".eq_level").val(8);
-refreshEq($("#eq_JSSH"));
+setSelectorByText($("#eq_JSSH").find(".eq_level"),"III");
 
 //天賜
 $("#bf_LUK").addClass("on");
@@ -841,15 +845,14 @@ $("#SAT_LUK").val(1);
 
 //武器
 $("#eq_CTCR").addClass("on");
-$("#eq_CTCR").find(".eq_level").val(10);
-$("#eq_CTCR").find(".eq_card1").val(9);
-$("#eq_CTCR").find(".eq_card2").val(9);
-refreshEq($("#eq_CTCR"));
+setSelectorByText($("#eq_CTCR").find(".eq_level"),"III");
+setSelectorByText($("#eq_CTCR").find(".eq_card1"),"邪骸士兵")
+setSelectorByText($("#eq_CTCR").find(".eq_card2"),"邪骸士兵")
+
 
 //副手
 $("#eq_JSSH").addClass("on");
-$("#eq_JSSH").find(".eq_level").val(8);
-refreshEq($("#eq_JSSH"))
+setSelectorByText($("#eq_JSSH").find(".eq_level"),"III");
 
 //天賜
 $("#bf_LUK").addClass("on");
