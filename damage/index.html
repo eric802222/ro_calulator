@@ -1,0 +1,819 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1,maximum-scale=2.0" /> 
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<title>RO手遊:傷害公式計算機</title>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-47709090-4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-47709090-4');
+</script>
+</head>
+ <body>
+
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<div id="ad_970">
+<!-- RO_970X90 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:970px;height:90px"
+     data-ad-client="ca-pub-8384162002444497"
+     data-ad-slot="2134079724"></ins>
+	 
+</div>
+<div id="ad_320">
+<!-- RO_320X100 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:100px"
+     data-ad-client="ca-pub-8384162002444497"
+     data-ad-slot="9952983707"></ins>
+</div>
+<h1>RO手遊:BBC刺客爆率計算機</h1>
+
+
+<div class="block " >
+<table  align="center" style="background:#FFF;text-align:center;">
+<tr height="30">
+<td width="124">(O)裝備ATK (卡片/強化/附魔)</td>
+<td ><input id="EQ_ATK" type="text" value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(O)素質ATK</td>
+<td ><input id="STAT_ATK" type="text" value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(X)精煉ATK</td>
+<td ><input id="REFINE_ATK" type="text" value=0></td>
+</tr>
+<tr height="30">
+<td width="124">(X)等級ATK</td>
+<td ><input id="LV_ATK" type="text" value=0></td>
+</tr>
+<tr height="30">
+<td width="124">(O)ATK倍率</td>
+<td ><input id="ATK_RATE" type="text" value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(O)傷害倍率</td>
+<td ><input id="DAM_RATE" type="text" value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(X)暴擊倍率</td>
+<td ><input id="CRIT_RATE" type="text" value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(O)屬性修正</td>
+<td ><input id="ATTR_CORR" type="text" value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(O)體型修正</td>
+<td ><input id="SIZE_CORR" type="text"  value=1></td>
+</tr>
+<tr height="30">
+<td width="124">(X)種族修正</td>
+<td ><input id="RACE_CORR" type="text" value=1></td>
+</tr>
+</table>
+
+<table  align="center" style="background:#FFF;text-align:center;">
+<tr height="30">
+<td width="124">(O)怪物物防</td>
+<td ><input id="MON_DEF" type="text" value=1></td>
+</tr>
+</table>
+<p id="DAMAGE_CALULATOR"></p>
+</div>
+
+
+
+<div class="block" >
+<table  align="center" style="background:#FFF;text-align:center;">
+<tr height="90">
+<td >
+範例:<select id="suit_type" style="font-size:16px;width:200px;height:26px;font-weight:bold">
+<option value="-1">-請選擇-</option>
+<option value="0">平民100%</option>
+<option value="1">平民120%</option>
+<option value="2">土豪120%</option>
+<option value="3">至尊土豪154%</option>
+</select></td>
+</tr>
+</table>
+</div>
+<div class="block " >
+<table  align="center" style="background:#FFF;text-align:center;">
+<tr height="30">
+<td width="124">LUK爆率</td>
+<td id="BG_LUK">0</td>
+</tr>
+<tr height="30">
+<td >裝備爆率</td>
+<td  id="BG_EQ">0</td>
+</tr>
+<tr height="30">
+<td >最終爆率</td>
+<td  id="BG_FINAL">0</td>
+</tr>
+</table>
+</div>
+<div class="block no-boder dis_m" >
+<table  align="center" style="background:transparent;text-align:left;">
+<tr height="30"  style="font-size:12px;">
+<td>= (LUK + BUFF加總)/3	</td>
+</tr> 
+<tr height="30" style="font-size:12px;">
+<td >= 裝備加總 + 料理加總 + 寵物加總	</td>
+
+</tr>
+<tr height="30" style="font-size:12px;">
+<td >= (1 + LUK爆率 + 裝備爆率) x2(拳刃加倍)	</td>
+
+</tr>
+</table>
+</div>
+<br/>
+
+<div class="block">
+<table id="table1" align="center">
+<thead>
+
+<tr height="1">
+<td width="44"></td>
+<td width="100"></td>
+<td></td>
+</tr>
+<tr height="30">
+<td colspan="3">
+基本素質
+</td>
+</tr>
+<tr height="30" align="center">
+<td width="44">
+名稱
+</td>
+<td width="100">
+素質</td>
+<td>備註</td>
+</thead>
+<tbody>
+<tr height="44">
+<td>STR</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+<td>AGI</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+<td>VIT</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+<td>INT</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+<td>DEX</td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+<td>LUK</td>
+<td><input id="SAT_LUK1" type="text" style="width:25px;" value="1"/>+<input id="SAT_LUK2" type="text" style="width:25px;" value="0"/></td>
+<td class="f12">LUK素質加總 (未上BUFF)</td>
+</tr>
+
+
+<tbody>
+</table>
+</div>
+<div class="block">
+<table id="table2" valign="top">
+<thead>
+
+<tr height="1">
+<td width="44"></td>
+<td width="44"></td>
+<td width="80"></td>
+<td ></td>
+</tr>
+<tr height="30" >
+<td colspan="4" align="center">
+裝備
+</td>
+</tr>
+<tr height="30" align="center" style="background:#777">
+<td width="44">
+位置
+</td>
+<td width="44">
+圖示</td>
+<td width="70">等級</td>
+<td >卡片</td>
+</tr>
+</thead>
+
+<tr id="eq_JSSH" height="44" class="eq">
+<td align="center">副手</td>
+<td>
+<div id="act_FS" data-eq="金色手環" class="act_block" alt="金色手環" title="金色手環">
+<div class="level">I</div>
+<div class="card-wrap">
+<div  class="card card2"></div>
+<div  class="card card1"></div>
+
+</div>
+</div>
+</td>
+<td class="wp_state">
+<select class="eq_level" style="width:40px;">
+<option value="5">I</option>
+<option value="5">II</option>
+<option value="8">III</option>
+</select>&nbsp;<span class="add_level"></span>
+</td>
+<td class="wp_state">
+<!--卡片1:<select class="eq_card1">
+<option value="0">無</option>
+</select>
+<br/>
+卡片2:<select class="eq_card2">
+<option value="0">無</option>
+
+</select>-->
+</td>
+</tr>
+<tr height="44">
+<td align="center">盔甲</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr height="44">
+<td align="center">披風</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr height="44">
+<td align="center">鞋子</td>
+<td></td>
+<td></td>
+<td></td>
+
+</tr>
+<tr height="44">
+<td align="center">飾品</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+
+<td align="center">飾品</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+
+</div>
+<div class="block">
+
+<table id="table2" valign="top">
+<thead>
+
+<tr height="1">
+<td width="44"></td>
+<td width="44"></td>
+<td width="80"></td>
+<td ></td>
+</tr>
+<tr height="30">
+<td colspan="4" align="center">
+裝備
+</td>
+</tr>
+<tr height="30" align="center" style="background:#777">
+<td width="44">
+位置
+</td>
+<td width="44">
+圖示</td>
+<td width="70">等級</td>
+<td >卡片</td>
+</tr>
+</thead>
+
+<tr id="eq_CTCR" height="44" class="eq">
+
+<td align="center">武器</td>
+<td> 
+<div id="act_WC" data-eq="刺藤拳刃" class="act_block" alt="刺藤拳刃" title="刺藤拳刃">
+<div class="level">I</div>
+<div class="card-wrap">
+<div class="card card2"></div>
+<div class="card card1"></div>
+
+</div>
+</div>
+</td>
+<td class="wp_state">
+<select class="eq_level" style="width:40px;">
+<option value="5">I</option>
+<option value="5">II</option>
+<option value="10">III</option>
+</select>&nbsp;<span class="add_level"></span>
+</td>
+<td class="wp_state">
+卡1:<select class="eq_card1">
+<option value="0">無</option>
+<option value="9">邪骸士兵</option>
+</select>&nbsp;<span class="add_card1"></span>
+<br/>
+卡2:<select class="eq_card2" >
+<option value="0">無</option>
+<option value="9">邪骸士兵</option>
+
+</select>&nbsp;<span class="add_card2"></span>
+</td>
+</tr>
+<tr height="44">
+
+<td align="center">頭飾</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr height="44">
+
+<td align="center">臉部</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr height="44">
+
+<td align="center">嘴部</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr height="44">
+
+<td align="center">背包</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+<tr height="44">
+
+
+<td align="center">尾巴</td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+
+</table>
+
+</div>
+
+<br/>
+
+<div class="block">
+<table id="table3" valign="top">
+<thead>
+
+<tr height="1">
+<td width="44"></td>
+<td width="100"></td>
+<td ></td>
+</tr>
+<tr height="44">
+<td colspan="3" align="center">
+料理
+</td>
+</tr>
+</thead>
+
+<tr id="fb_LUK_A" height="44" class="buff bf_radio add_BG_EQ" data-per="10" data-radio="fd_LUK">
+<td class="icon"><img src="fd_luk_a.png" alt="幸運料理A" title="幸運料理B" width="40"></td>
+<td >幸運料理A</td>
+<td class="wp_state">裝備爆率 <span class="txt_border">+10</span></td>
+</tr>
+<tr id="fb_LUK_B" height="44" class="buff bf_radio add_BG_EQ" data-per="20" data-radio="fd_LUK">
+<td class="icon"><img src="fd_luk_b.png" alt="幸運料理A" title="幸運料理B" width="40"></td>
+<td>幸運料理B</td>
+<td  class="wp_state">裝備爆率 <span class="txt_border">+20</span></td>
+</tr>
+
+</table>
+</div>
+
+<div class="block">
+<table id="table4" valign="top">
+<thead>
+
+
+<tr height="1">
+<td width="44"></td>
+<td width="100"></td>
+<td ></td>
+</td>
+</tr>
+<tr height="44">
+<td colspan="3" align="center">
+輔助技能
+</td>
+</tr>
+</thead>
+
+<tr id="bf_LUK" height="44" class="buff add_BG_LUK rate" data-now="0" data-max="5" data-per="6">
+<td class="icon">
+<img src="bf_幸運之歌頌.png" alt="幸運之歌頌" title="幸運之歌頌" width="40">
+<div class="bf_level"></div>
+</td>
+<td>幸運之歌頌</td>
+<td class="wp_state">LUK <span class="bf_count txt_border">0</span></td>
+</tr>
+<tr height="44">
+<td></td>
+<td></td>
+<td ></td>
+</tr>
+
+</table>
+</div>
+
+
+<div class="block">
+<table id="table5" valign="top">
+<thead>
+
+
+<tr height="1">
+<td width="44"></td>
+<td width="100"></td>
+<td ></td>
+
+</td>
+</tr>
+<tr height="44">
+<td colspan="3" align="center">
+寵物
+</td>
+</tr>
+</thead>
+
+<tr id="pt_MTR" height="44" class="buff rate add_BG_EQ rate" data-now="0" data-max="10" data-per="1">
+<td class="icon">
+<img src="pt_曼陀羅.png" alt="曼陀羅" title="曼陀羅"  width="40">
+<div class="bf_level"></div>
+</td>
+<td>曼陀羅</td>
+<td  class="wp_state">裝備爆率 <span class="bf_count txt_border">0</span></td>
+</tr>
+<tr height="44">
+<td></td>
+<td></td>
+<td ></td>
+</tr>
+
+</table>
+</div>
+
+<p id="from">原文網址:<span class="mobile"><br></span><a href="https://forum.gamer.com.tw/C.php?bsn=28924&snA=4654" target="_blank">【攻略】平民刺客爆率計算機，不再煩惱Luck點多少!</a> </p>
+
+</body>
+
+
+<style>
+
+#from{color:#555; font-size:14px;}
+#from a{color:#09F}
+.mobile{display:none}
+html,body{background:#efefef;margin:10px auto; max-width:980px;font-family: 'Roboto Mono',"Microsoft JhengHei";}
+.block{
+display:inline-block;
+position:relative;
+
+}
+
+select{
+width:70px;
+font-size:12px;
+line-height:1.2em;
+font-family: 'Courier',"Microsoft JhengHei";
+background:url("select_drop.png") right bottom no-repeat;
+background-color:#FFF;
+border:1px solid #555;
+border-radius:0px;
+}
+table{
+border-collapse: collapse;
+width:320px;
+/*height:360px;*/
+
+background:#ddd;
+}
+#table1{
+border:0px solid #FFF;
+background:url("bg_1.png") center top no-repeat;
+background-size:100% auto;
+background-color:#555;
+text-align:center;
+background:#ddd;
+}
+
+#table2{
+border:1px solid #000;
+
+/*background:url("bg_equip.png") center top no-repeat;*/
+background-size:100% auto;
+background-color:#ddd;
+
+}
+#table3{
+border:1px solid #000;
+
+
+}
+	
+
+
+td{
+border:1px solid rgba(0,0,0,1);
+overflow:hidden;
+padding:0px 3px;
+position:relative
+}
+
+.f12{font-size:12px;}
+
+thead td{
+border:1px solid #333;
+background:#333;
+color:#FFF;
+}
+
+td.icon{
+vertical-align:middle;
+text-align:center;
+}
+
+.no-boder td{
+border:1px solid rgba(0,0,0,0);
+}
+
+.wp_state{
+font-size:12px;
+line-height:20px;
+
+}
+
+.wp_state select{
+height:20px;
+vertical-align:middle;
+line-height:20px;
+}
+
+#equip_pop table{width:200px;}
+#eq_now{width:44px}
+
+.level{font-family:Arial}
+
+.buf_block{
+width:40px;
+height:40px;
+position:relative;
+background-size:100%;
+display:inline-block;
+opacity:0.5;
+font-size:10px;
+text-align:center;
+}
+.buf_block.on{
+opacity:1
+}
+.act_block{
+width:40px;
+height:40px;
+position:relative;
+background-size:100%;
+margin:0 auto
+}
+
+.act_block .level{
+font-size:12px;
+position:absolute;
+right:2px;
+top:0px;
+}
+
+
+.act_block .card-wrap{
+position:absolute;
+right:2px;
+bottom:2px;
+}
+.act_block .card-wrap .card.enable{
+float:right;
+width:5px; height:8px;
+margin-left:2px;
+border: 1px dashed #505C6C;
+}
+.act_block .card-wrap .card.enable.on{
+float:right;
+width:5px; height:8px;
+margin-left:2px;
+background:#505C6C;
+}
+
+
+
+
+.buff,.eq{opacity:0.5}
+.buff.on,.eq.on{opacity:1;background:#Fd5}
+
+.bf_level{
+position:absolute;bottom:2px;right:4px;
+}
+
+
+.bf_level,
+.add_level,
+.add_card1,
+.add_card2,
+.txt_border
+{
+text-shadow: 
+     white 0px 2px,
+	 white 2px 0px,
+	 white -2px 0px, 
+     white 0px -2px,
+	 white -1.4px -1.4px,
+	 white 1.4px 1.4px, 
+     white 1.4px -1.4px,
+	 white -1.4px 1.4px; 
+	font-size:12px;
+	font-weight:bold;
+}
+.act_block,
+img{cursor:pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+html,body{width:320px;}
+h1{
+font-size:20px;
+}
+.block{
+margin:0 auto;
+display:block;
+margin-bottom:20px;
+width:320px;
+}
+	
+.dis_m{
+display:none}
+input,
+textarea,
+button,
+select{
+    font-size: 16px !important;
+	padding:0px 2px;
+}
+.mobile{display:inline}
+
+}
+input,
+textarea,
+button,
+select{
+	padding:0px 2px;
+}
+
+
+select{
+-webkit-appearance: none;}
+</style>
+
+<script>
+$("input").keyup(function(){
+calulator();
+});
+
+function calulator(){
+var EQ_ATK=parseFloat($("#EQ_ATK").val())
+var STAT_ATK=parseFloat($("#STAT_ATK").val())
+var REFINE_ATK=parseFloat($("#REFINE_ATK").val())
+var LV_ATK=parseFloat($("#LV_ATK").val())
+var ATK_RATE=parseFloat($("#ATK_RATE").val())
+var DAM_RATE=parseFloat($("#DAM_RATE").val())
+var CRIT_RATE=parseFloat($("#CRIT_RATE").val())
+var ATTR_CORR=parseFloat($("#ATTR_CORR").val())
+var SIZE_CORR=parseFloat($("#SIZE_CORR").val())
+var RACE_CORR=parseFloat($("#RACE_CORR").val())
+
+
+var MON_DEF=parseFloat($("#MON_DEF").val())
+
+var I1=1//1+体型伤害
+var I2=1//1+伤害提升
+var I3=1 //1-物伤减免
+var fin_def=0 //最终物防
+var I4=1//体型减伤
+var I5=1//属性减伤
+
+var Vit=1
+
+
+var damage=EQ_ATK+LV_ATK;
+damage=fixRate(damage,ATK_RATE);
+damage=fixRate(damage,SIZE_CORR);
+damage=fixRate(damage,ATTR_CORR);
+damage+=STAT_ATK;
+damage=fixRate(damage,DAM_RATE);
+damage=fixRate(damage,RACE_CORR);
+damage=fixRate(damage,(4000+MON_DEF)/(4000+10*MON_DEF));
+damage+=REFINE_ATK;
+damage/=2
+
+var crit_damage=EQ_ATK+LV_ATK+REFINE_ATK;
+crit_damage=fixRate(crit_damage,ATK_RATE);
+crit_damage=fixRate(crit_damage,SIZE_CORR);
+crit_damage=fixRate(crit_damage,ATTR_CORR);
+crit_damage+=STAT_ATK;
+crit_damage=fixRate(crit_damage,DAM_RATE);
+crit_damage=fixRate(crit_damage,CRIT_RATE);
+crit_damage=fixRate(crit_damage,RACE_CORR);
+crit_damage=fixRate(crit_damage,(4000+MON_DEF)/(4000+10*MON_DEF));
+crit_damage+=REFINE_ATK;
+crit_damage/=2
+
+ //(Math.floor(((EQ_ATK+LV_ATK)*ATK_RATE)*SIZE_CORR*ATTR_CORR)+STAT_ATK)*DAM_RATE*(4000+MON_DEF)/(4000+10*MON_DEF)+REFINE_ATK
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ //crit_damage= Math.floor((Math.floor((Math.floor(EQ_ATK*(ATK_RATE)*SIZE_CORR*I1*ATTR_CORR)+STAT_ATK)*RACE_CORR)+REFINE_ATK)*(CRIT_RATE)*(I2))
+
+ final_atk= (EQ_ATK*(ATK_RATE)*SIZE_CORR*I1*ATTR_CORR+STAT_ATK)*RACE_CORR //最终物攻
+ 
+ //damage= (final_atk*(4000+fin_def)/(4000+fin_def*10)*(1-I3)+REFINE_ATK-Vit)*(ATK_RATE)*RACE_CORR*I4*I5
+
+ //最终物攻 = (装备攻击*(1+物攻加成)*武器体型修正*体型伤害*属性伤害+素质攻击)*种族伤害
+
+//最终物防 = 装备物防*(1+物防提升)*(1-忽视物防)
+
+//最终伤害 = (最终物攻*(4000+最终物防)/(4000+最终物防*10)*(1-物伤减免)+精炼物攻-Vit)*(1+物伤提升)*种族减伤*体型减伤*属性减伤
+ 
+$("#DAMAGE_CALULATOR").text(crit_damage+"/"+damage)
+
+}
+
+
+function fixRate(a,b){
+
+return Math.floor(a*b);
+}
+
+
+</script>
+
+<script>
+if($(window).width()<768){
+	$("#ad_970").remove()
+}else{
+	$("#ad_320").remove()
+}
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</html>
