@@ -165,9 +165,9 @@
 <td>備註</td>
 </thead>
 <tbody>
-<tr height="44">
+<tr  height="44">
 <td>STR</td>
-<td></td>
+<td><input id="SAT_STR" type="text" style="width:25px;" value="1"/></td>
 <td></td>
 </tr>
 
@@ -191,7 +191,7 @@
 
 <tr height="44">
 <td>DEX</td>
-<td></td>
+<td><input id="SAT_DEX" type="text" style="width:25px;" value="1"/></td>
 <td></td>
 </tr>
 
@@ -727,6 +727,8 @@ $("input").keyup(function(){
 calulator();
 });
 
+
+
 function calulator(){
 var EQ_ATK=parseFloat($("#EQ_ATK").val())
 var STAT_ATK=parseFloat($("#STAT_ATK").val())
@@ -742,6 +744,12 @@ var RACE_CORR=parseFloat($("#RACE_CORR").val())
 
 var MON_DEF=parseFloat($("#MON_DEF").val())
 
+var SAT_STR=parseFloat($("#SAT_STR").val())
+var SAT_DEX=parseFloat($("#SAT_DEX").val())
+var SAT_LUK1=parseFloat($("#SAT_LUK1").val())
+
+$("#STAT_ATK").val(SAT_STR*SAT_STR/100+2*SAT_STR+SAT_DEX/5+SAT_LUK1/2)
+var STAT_ATK=parseFloat($("#STAT_ATK").val())
 var I1=1//1+体型伤害
 var I2=1//1+伤害提升
 var I3=1 //1-物伤减免
@@ -795,7 +803,7 @@ crit_damage/=2
 
 //最终伤害 = (最终物攻*(4000+最终物防)/(4000+最终物防*10)*(1-物伤减免)+精炼物攻-Vit)*(1+物伤提升)*种族减伤*体型减伤*属性减伤
  
-$("#DAMAGE_CALULATOR").text(crit_damage+"/"+damage)
+$("#DAMAGE_CALULATOR").text(crit_damage+"/"+damage*2+"("+damage+")")
 
 }
 
