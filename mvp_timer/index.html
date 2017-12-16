@@ -16,14 +16,12 @@
 <body class="chk_info chk_loc">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <!-- RO_MVP -->
-<ins class="adsbygoogle"
+<ins id="ad" class="adsbygoogle"
      style="display:block"
      data-ad-client="ca-pub-8384162002444497"
      data-ad-slot="6737173716"
      data-ad-format="auto"></ins>
-<script>
-(adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+
 <div id="page">
 <h1>RO手遊:MVP計時器</h1>
 <div id="help">
@@ -355,5 +353,11 @@ function delCookie(name)//删除cookie
 
 
 inital();
+</script>
+<script>
+if($(window).width()<768){
+	$("#ad").remove()
+}
+(adsbygoogle = window.adsbygoogle || []).push({});
 </script>
 </html>
