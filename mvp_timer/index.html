@@ -234,6 +234,11 @@ $("#ckb_loc").change(function(){
 
 setInterval(countTime,500);
 
+if($(window).width()<768){
+
+$(".mon img").width("20%")
+}
+
 }
 
 function changeSetting(id,val){
