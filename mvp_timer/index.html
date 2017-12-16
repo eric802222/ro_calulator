@@ -14,19 +14,32 @@
 </script>
 </head>
 <body class="chk_info chk_loc">
-
-
-
-<p id="demo">
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- RO_MVP -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8384162002444497"
+     data-ad-slot="6737173716"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<h1>RO手遊:MVP計時器</h1>
+<div id="help">
+<div class="left">
+<b>左鍵:</b>開始計時&emsp;<b>雙擊:</b>取消計時&emsp;<b>右鍵:</b>自訂時間
+</div>
+<div class="right">
 <input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;<input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>
-</p>
+</div>
+</div>
 <div id="min"></div>
 <div id="mvp"></div>
 </body>
 
 <style>
 #mim,#mvp{clear:both}
-html,body{font-family:consolas,"Microsoft JhengHei";max-width:1280px;margin:0 auto}
+html,body{font-family:consolas,"Microsoft JhengHei";max-width:980px;margin:10px auto}
 body{
 -webkit-touch-callout: none;
 -webkit-user-select: none;
@@ -35,11 +48,15 @@ body{
 -ms-user-select: none;
 user-select: none;
 }
+#help .left{float:left}
+#help .right{float:right;text-align:right;}
 .mon{display:inline-block;width:80px;margin:5px;text-align:center;
 background-position:center;
 background-repeat:no-repeat;
 font-size:10px;
 }
+
+#min{clear:both}
 .mon img{opacity:0.5;width:80px;pointer-events: none;}
 .mon.count img{opacity:1}
 .mon .time_wrap{position:relative;cursor:pointer;}
