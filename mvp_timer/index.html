@@ -26,11 +26,12 @@
 <div id="page">
 <h1>RO手遊:MVP計時器</h1>
 <div id="help">
-<div class="left">
-<b>左鍵:</b>開始計時&emsp;<b>雙擊:</b>取消計時&emsp;<b>右鍵:</b>自訂時間
-</div>
+
 <div class="right">
 <input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;<input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>
+</div>
+<div class="left">
+<b>單擊:</b>開始計時&emsp;<b>雙擊:</b>取消計時&emsp;<b><span id="cus_time">右鍵</span>:</b>自訂時間
 </div>
 </div>
 <div id="min"></div>
@@ -121,6 +122,8 @@ text-shadow:
 
 #page{margin:0px 10px}
 
+#help .left{float:left;margin:5px}
+#help .right{float:left;text-align:left;margin:5px}
 }
 </style>
 
@@ -236,7 +239,11 @@ setInterval(countTime,500);
 
 if($(window).width()<768){
 
-$(".mon img").width("20%")
+$(".mon").width(($(window).width()-20)/4-10);
+$(".mon img").width("100%");
+$(".mon .time").width($(".mon").width()-8);
+
+$("#cus_time").text("長按")
 }
 
 }
