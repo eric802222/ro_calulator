@@ -201,6 +201,10 @@ $mon.dblclick( function(){
 		myFunction(id);
 		},longpress)
     } );
+	
+	 $mon.on( 'touchmove', function( e ) {
+        clearTimeout(timer_longpress)
+    } );
 
 
     $mon.on( 'touchend', function( e ) {
