@@ -1,0 +1,334 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="height=device-height,width=device-width, initial-scale=0.65, maximum-scale=1.0, user-scalable=no" /> 
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+ <script src="mon.js" type="text/javascript"></script>
+ <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-8384162002444497",
+    enable_page_level_ads: true
+  });
+</script>
+</head>
+<body class="chk_info chk_loc">
+
+
+
+<p id="demo">
+<input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;<input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>
+</p>
+<div id="min"></div>
+<div id="mvp"></div>
+</body>
+
+<style>
+#mim,#mvp{clear:both}
+html,body{font-family:consolas,"Microsoft JhengHei";max-width:1280px;margin:0 auto}
+body{
+-webkit-touch-callout: none;
+-webkit-user-select: none;
+-khtml-user-select: none;
+-moz-user-select: none;
+-ms-user-select: none;
+user-select: none;
+}
+.mon{display:inline-block;width:80px;margin:5px;text-align:center;
+background-position:center;
+background-repeat:no-repeat;
+font-size:10px;
+}
+.mon img{opacity:0.5;width:80px;pointer-events: none;}
+.mon.count img{opacity:1}
+.mon .time_wrap{position:relative;cursor:pointer;}
+.mon .time{position:absolute;bottom:3px;left:4px; width:72px;display:block;line-height:24px;
+text-shadow: 
+     white 0px 2px,
+	 white 2px 0px,
+	 white -2px 0px, 
+     white 0px -2px,
+	 white -1.4px -1.4px,
+	 white 1.4px 1.4px, 
+     white 1.4px -1.4px,
+	 white -1.4px 1.4px; 
+	font-weight:bold;
+	font-size:15px;
+	background:rgba(255,255,255,0.6);
+	border-radius:0px 0px 8px 8px;
+	
+}
+
+
+label{cursor:pointer}
+.mon .race{position:absolute;right:5px;top:4px;line-height:16px;display:none;}
+.mon .attr{position:absolute;right:5px;top:20px;line-height:16px;display:none;}
+.mon .size{position:absolute;right:5px;top:36px;line-height:16px;display:none;}
+.mon .race,
+.mon .attr,
+.mon .size{
+font-weight:bold;
+text-shadow: 
+     white 0px 1px,
+	 white 1px 0px,
+	 white -1px 0px, 
+     white 0px -1px,
+	 white -1px -1px,
+	 white 1px 1px, 
+     white 1px -1px,
+	 white -1px 1px; 
+}
+
+.ckb_info .mon .race,
+.ckb_info .mon .attr,
+.ckb_info .mon .size{display:block}
+
+.loc{display:none}
+.ckb_loc .loc{display:block}
+
+.ready .time,
+.last .time{line-height:30px;font-size:24;bottom:0px;background:transparent}
+
+.ready .time{color:#f60;}
+.last .time{color:#F00;}
+
+.cover{width:100%;height:100%;left:0px;top:0px;position:absolute;border-radius:10px;}
+
+
+.ready .cover{background:rgba(255,200,0,0.5);}
+.last .cover{background:rgba(255,0,0,0.5);}
+</style>
+
+<script>
+var timer=0;
+var mon_time=[];
+// how many milliseconds is a long press?
+    var longpress = 600;
+    // holds the start time
+    var start;
+	var timer_longpress
+function inital(){
+
+
+for(var i=0;i<mons.length;i++){
+mon_time[i]=false;
+$mon=$("<div/>",{'id':"mon_"+i,"class":"mon","data-time":mons[i].time});
+$mon.html(
+"<div class='time_wrap' title='LV."+mons[i].lv+" "+mons[i].name+"'>"+
+"<div class='cover'></div>"+
+"<img src='img/"+mons[i].img+".png' >"+
+"<span class='time'></span>"+
+"<span class='race'>"+mons[i].race+"</span>"+
+"<span class='attr'>"+mons[i].attr+"</span>"+
+"<span class='size'>"+mons[i].size+"</span>"+
+"</div><div class='loc'>"+mons[i].loc+"</div>");
+
+if(getCookie(i)!=null){
+mon_time[i]=new Date();
+mon_time[i].setTime(getCookie(i));
+$mon.addClass("count");
+}
+
+$mon.click(function(){
+var id=this.id.replace("mon_","")
+var time=$(this).attr("data-time");
+
+if(timer!=0){
+	clearTimeout(timer);
+	var id=this.id.replace("mon_","")
+	mon_time[id]=false;
+	$("#mon_"+id).removeClass("count last played ready");
+	delCookie(id);
+	timer=-1;
+}
+
+if(timer!=-1){
+clearTimeout(timer);
+timer=setTimeout(function(){
+if(mon_time[id]==false){
+setMonTime(id,time);
+}
+timer=0;
+},200);
+}else{
+timer=0
+}
+
+
+});
+
+/*
+$mon.dblclick( function(){
+	clearTimeout(timer);
+	var id=this.id.replace("mon_","")
+	mon_time[id]=false;
+	$("#mon_"+id).removeClass("count last played ready");
+	delCookie(id)
+});
+*/
+
+
+
+	$mon.on( 'touchstart', function( e ) {
+		var id=this.id.replace("mon_","");
+		clearTimeout(timer_longpress)
+        timer_longpress=setTimeout(function(){
+		
+		myFunction(id);
+		},longpress)
+    } );
+
+
+    $mon.on( 'touchend', function( e ) {
+        clearTimeout(timer_longpress)
+    } );
+$mon.contextmenu(function(e) {
+  myFunction(this.id);
+  e.preventDefault();
+});
+if(mons[i].mvp)$mon.appendTo($("#mvp"));
+else $mon.appendTo($("#min"));
+}
+
+var isShowInfo=getCookie("ckb_info");
+if(isShowInfo!=undefined)changeSetting("ckb_info",getCookie("ckb_info"))
+$("#ckb_info").change(function(){
+	changeSetting("ckb_info",$("#ckb_info:checked").val())
+});
+
+var isShowLoc=getCookie("ckb_loc");
+if(isShowLoc!=undefined)changeSetting("ckb_loc",getCookie("ckb_loc"))
+$("#ckb_loc").change(function(){
+	changeSetting("ckb_loc",$("#ckb_loc:checked").val())
+});
+
+
+setInterval(countTime,500);
+
+}
+
+function changeSetting(id,val){
+
+delCookie(id);
+setCookie(id,val);
+if(val=="on"){
+$("body").addClass(id);
+$("#"+id).prop('checked', true);
+}
+else $("body").removeClass(id);
+}
+
+function myFunction(mid){
+    var txt;
+	var time=$("#"+mid).attr("data-time");
+	var id=mid.replace("mon_","")
+    var person = prompt("手動輸入剩餘時間", time);
+    if (person == null || person == "") {
+       alert("時間輸入錯誤");
+    } else {
+		setMonTime(id,person);
+		
+		
+    }
+    //document.getElementById("demo").innerHTML = txt;
+}
+
+
+
+
+
+
+function setMonTime(id,time){
+   $("#mon_"+id).removeClass("last played ready");
+   $("#mon_"+id).addClass("count");
+   mon_time[id] = new Date();
+   mon_time[id].setMinutes(mon_time[id].getMinutes() + parseInt(time), mon_time[id].getSeconds(), 0);
+   setCookie(id,mon_time[id].getTime());
+   
+}
+
+
+function countTime(){
+/* 計算已經服役天數 */
+var now = new Date();
+
+for(var i=0;i<mons.length;i++){
+if(mon_time[i]!=false){
+var lasttime = mon_time[i];
+/* 這個是入伍日期，上面的寫法是：我在 2007 年 10 月 17 入伍 */
+lasttime = (lasttime.getTime()-now.getTime())/(1000);
+/* 現在時間減去入伍時間，為 Unix 系統時間，毫秒 */
+sec = Math.ceil(lasttime);
+hr=Math.floor(sec/60/60);
+min=Math.floor(sec/60)%60;
+sec=sec%60;
+/*傳回指定數字或運算式的最小整數 */
+$("#mon_"+i).find(".time")[0].innerHTML=addZero(hr)+":"+addZero(min)+":"+addZero(sec)
+
+
+if(lasttime<300){
+$("#mon_"+i).find(".time")[0].innerHTML=addZero(min)+":"+addZero(sec)
+$("#mon_"+i).addClass("ready")
+}
+if(lasttime<90){
+
+$("#mon_"+i).addClass("last")
+
+//音效
+if(!$("#mon_"+i).hasClass("played")){
+var audio = new Audio('alert.mp3');
+audio.loop = false;
+audio.play();
+$("#mon_"+i).addClass("played");
+}
+}
+
+if(lasttime<=0){
+mon_time[i]=false
+$("#mon_"+i).removeClass("last played ready count");
+delCookie(i)
+}
+
+}else{
+
+$("#mon_"+i).find(".time")[0].innerHTML= ""
+}
+}
+}
+
+function addZero(i){
+
+if(i<10) return "0"+i;
+else return i;
+
+}
+
+//写cookies函数 作者：翟振凯
+function setCookie(name,value)//两个参数，一个是cookie的名子，一个是值
+{
+    var Days = 30; //此 cookie 将被保存 30 天
+    var exp  = new Date();    //new Date("December 31, 9998");
+    exp.setTime(exp.getTime() + Days*24*60*60*1000);
+    document.cookie = name + "="+ escape (value) + ";expires=" + exp.toGMTString();
+}
+function getCookie(name)//取cookies函数        
+{
+    var arr = document.cookie.match(new RegExp("(^| )"+name+"=([^;]*)(;|$)"));
+     if(arr != null) return unescape(arr[2]); return null;
+
+}
+function delCookie(name)//删除cookie
+{
+    var exp = new Date();
+    exp.setTime(exp.getTime() - 1);
+    var cval=getCookie(name);
+    if(cval!=null) document.cookie= name + "="+cval+";expires="+exp.toGMTString();
+}
+
+
+
+
+inital();
+</script>
+</html>

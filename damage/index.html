@@ -52,15 +52,15 @@
 </tr>
 <tr height="30">
 <td width="124">(X)精煉ATK</td>
-<td ><input id="REFINE_ATK" type="text" value=0></td>
+<td ><input id="REFINE_ATK" type="text" value=83></td>
 </tr>
 <tr height="30">
 <td width="124">(X)等級ATK</td>
-<td ><input id="LV_ATK" type="text" value=0></td>
+<td ><input id="LV_ATK" type="text" value=308></td>
 </tr>
 <tr height="30">
 <td width="124">(O)ATK倍率</td>
-<td ><input id="ATK_RATE" type="text" value=1></td>
+<td ><input id="ATK_RATE" type="text" value=1.16></td>
 </tr>
 <tr height="30">
 <td width="124">(O)傷害倍率</td>
@@ -68,7 +68,7 @@
 </tr>
 <tr height="30">
 <td width="124">(X)暴擊倍率</td>
-<td ><input id="CRIT_RATE" type="text" value=1></td>
+<td ><input id="CRIT_RATE" type="text" value=2.12></td>
 </tr>
 <tr height="30">
 <td width="124">(O)屬性修正</td>
@@ -167,7 +167,7 @@
 <tbody>
 <tr  height="44">
 <td>STR</td>
-<td><input id="SAT_STR" type="text" style="width:25px;" value="1"/></td>
+<td><input id="SAT_STR1" type="text" style="width:25px;" value="39"/>+<input id="SAT_STR2" type="text" style="width:25px;" value="19"/></td>
 <td></td>
 </tr>
 
@@ -191,13 +191,13 @@
 
 <tr height="44">
 <td>DEX</td>
-<td><input id="SAT_DEX" type="text" style="width:25px;" value="1"/></td>
+<td><input id="SAT_DEX1" type="text" style="width:25px;" value="0"/>+<input id="SAT_DEX2" type="text" style="width:25px;" value="8"/></td>
 <td></td>
 </tr>
 
 <tr height="44">
 <td>LUK</td>
-<td><input id="SAT_LUK1" type="text" style="width:25px;" value="1"/>+<input id="SAT_LUK2" type="text" style="width:25px;" value="0"/></td>
+<td><input id="SAT_LUK1" type="text" style="width:25px;" value="36"/>+<input id="SAT_LUK2" type="text" style="width:25px;" value="16"/></td>
 <td class="f12">LUK素質加總 (未上BUFF)</td>
 </tr>
 
@@ -727,10 +727,25 @@ $("input").keyup(function(){
 calulator();
 });
 
+EQ_ATK=115+70+9+30+55 //刺藤
+EQ_ATK+=13 //金色手環
+EQ_ATK+=4 //大貓
+EQ_ATK+=6 //布袋鞋
+EQ_ATK+=48 //幸運
+EQ_ATK+=30+20+10 //花戒指
+EQ_ATK+=3 //小惡魔耳機
+EQ_ATK+=3+2 //蝗蟲卡
+EQ_ATK+=3+2 //白蟻卡
+EQ_ATK+=30 //拳刃修練
+EQ_ATK+=13 //永久
+EQ_ATK+=10 //神碑
 
-
+$("#EQ_ATK").val(EQ_ATK)
 function calulator(){
 var EQ_ATK=parseFloat($("#EQ_ATK").val())
+
+
+
 var STAT_ATK=parseFloat($("#STAT_ATK").val())
 var REFINE_ATK=parseFloat($("#REFINE_ATK").val())
 var LV_ATK=parseFloat($("#LV_ATK").val())
@@ -744,11 +759,11 @@ var RACE_CORR=parseFloat($("#RACE_CORR").val())
 
 var MON_DEF=parseFloat($("#MON_DEF").val())
 
-var SAT_STR=parseFloat($("#SAT_STR").val())
-var SAT_DEX=parseFloat($("#SAT_DEX").val())
-var SAT_LUK1=parseFloat($("#SAT_LUK1").val())
+var SAT_STR=parseFloat($("#SAT_STR1").val())+parseFloat($("#SAT_STR2").val())
+var SAT_DEX=parseFloat($("#SAT_DEX1").val())+parseFloat($("#SAT_DEX2").val())
+var SAT_LUK=parseFloat($("#SAT_LUK1").val())+parseFloat($("#SAT_LUK2").val())
 
-$("#STAT_ATK").val(SAT_STR*SAT_STR/100+2*SAT_STR+SAT_DEX/5+SAT_LUK1/2)
+$("#STAT_ATK").val(parseInt(SAT_STR*SAT_STR/100)+2*SAT_STR+parseInt(SAT_DEX/5)+parseInt(SAT_LUK/2))
 var STAT_ATK=parseFloat($("#STAT_ATK").val())
 var I1=1//1+体型伤害
 var I2=1//1+伤害提升
@@ -759,29 +774,25 @@ var I5=1//属性减伤
 
 var Vit=1
 
+var FINAL_ATK=EQ_ATK+LV_ATK; 	
+FINAL_ATK=fixRate(FINAL_ATK,ATK_RATE);
+FINAL_ATK=fixRate(FINAL_ATK,SIZE_CORR);
+FINAL_ATK=fixRate(FINAL_ATK,ATTR_CORR);
+FINAL_ATK+=STAT_ATK;
+FINAL_ATK=fixRate(FINAL_ATK,RACE_CORR);
 
-var damage=EQ_ATK+LV_ATK;
-damage=fixRate(damage,ATK_RATE);
-damage=fixRate(damage,SIZE_CORR);
-damage=fixRate(damage,ATTR_CORR);
-damage+=STAT_ATK;
-damage=fixRate(damage,DAM_RATE);
-damage=fixRate(damage,RACE_CORR);
+
+var damage=FINAL_ATK
 damage=fixRate(damage,(4000+MON_DEF)/(4000+10*MON_DEF));
-damage+=REFINE_ATK;
-damage/=2
+damage+=REFINE_ATK;	
+damage=fixRate(damage,DAM_RATE);
 
-var crit_damage=EQ_ATK+LV_ATK+REFINE_ATK;
-crit_damage=fixRate(crit_damage,ATK_RATE);
-crit_damage=fixRate(crit_damage,SIZE_CORR);
-crit_damage=fixRate(crit_damage,ATTR_CORR);
-crit_damage+=STAT_ATK;
-crit_damage=fixRate(crit_damage,DAM_RATE);
+damage=fixRate(damage,0.5)
+
+var crit_damage=FINAL_ATK+REFINE_ATK;;
 crit_damage=fixRate(crit_damage,CRIT_RATE);
-crit_damage=fixRate(crit_damage,RACE_CORR);
-crit_damage=fixRate(crit_damage,(4000+MON_DEF)/(4000+10*MON_DEF));
-crit_damage+=REFINE_ATK;
-crit_damage/=2
+
+crit_damage=fixRate(crit_damage,0.5)
 
  //(Math.floor(((EQ_ATK+LV_ATK)*ATK_RATE)*SIZE_CORR*ATTR_CORR)+STAT_ATK)*DAM_RATE*(4000+MON_DEF)/(4000+10*MON_DEF)+REFINE_ATK
  
@@ -803,7 +814,7 @@ crit_damage/=2
 
 //最终伤害 = (最终物攻*(4000+最终物防)/(4000+最终物防*10)*(1-物伤减免)+精炼物攻-Vit)*(1+物伤提升)*种族减伤*体型减伤*属性减伤
  
-$("#DAMAGE_CALULATOR").text(crit_damage+"/"+damage*2+"("+damage+")")
+$("#DAMAGE_CALULATOR").text(crit_damage+"/"+FINAL_ATK+"/"+damage*2+"("+damage+")")
 
 }
 
