@@ -254,7 +254,10 @@ var cusAlert=getCookie("sel_alert");
 if(cusAlert!=undefined)$("#sel_alert").val(getCookie("sel_alert"))
 console.log(cusAlert);
 $("#sel_alert").change(function(){
-	setCookie("sel_alert",$("#sel_alert").val())
+	setCookie("sel_alert",$("#sel_alert").val());
+	var audio = new Audio(alertmp3[$("#sel_alert").val()]);
+	audio.loop = false;
+	audio.play();
 });
 
 setInterval(countTime,500);
