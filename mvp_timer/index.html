@@ -326,18 +326,22 @@ $("#"+id).prop('checked', true);
 else $("body").removeClass(id);
 }
 
+var ispop=false;
 function myFunction(mid){
+    if(!ispop){
+	ispop=true;
     var txt;
 	var time=$("#"+mid).attr("data-time");
 	var id=mid.replace("mon_","")
     var person = prompt("手動輸入剩餘時間", time);
     if (person == null || person == "") {
        alert("時間輸入錯誤");
+	   ispop=false;
     } else {
 		setMonTime(id,person);
-		
-		
+		ispop=false;
     }
+	}
     //document.getElementById("demo").innerHTML = txt;
 }
 
