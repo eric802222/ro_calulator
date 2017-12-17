@@ -257,7 +257,7 @@ $mon.dblclick( function(){
 		},longpress)
     } );
 	
-	 $mon.on( 'touchmove', function( e ) {
+	$mon.on( 'touchmove', function( e ) {
         clearTimeout(timer_longpress)
     } );
 
@@ -267,6 +267,7 @@ $mon.dblclick( function(){
     } );
 	
 	$mon.contextmenu(function(e) {
+	  clearTimeout(timer_longpress)
 	  myFunction(this.id);
 	  e.preventDefault();
 	});
