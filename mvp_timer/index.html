@@ -425,6 +425,7 @@ function delCookie(name)
 
  function playsound()
             {
+			if($(window).width()<768){
                 $("#alert0")[0].play();
                 $("#alert0")[0].pause();
 				$("#alert1")[0].play();
@@ -434,6 +435,14 @@ function delCookie(name)
                     $("#alert"+$("#sel_alert").val())[0].currentTime = 0;
                     $("#alert"+$("#sel_alert").val())[0].play();
                 }, 100);
+			}
+			else{
+			var malert=["alert.mp3","alert2.mp3"];
+			var audio = new Audio(malert[$("#sel_alert").val()]);
+			audio.loop = false;
+			audio.play();
+			
+			}
             }
 
 inital();
