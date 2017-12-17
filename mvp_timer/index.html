@@ -35,7 +35,7 @@
 <div id="page">
 <h1>RO手遊:MVP計時器 <span id="coder">By 大雞毛</span></h1>
 <div id="help">
-
+<img id="setting" src="setting.png" width="20">
 <div class="right">
 <input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;<span class="mobile"><br/></span>
 <input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>&emsp;<span class="mobile"><br/></span>
@@ -60,7 +60,7 @@
 </body>
 
 <style>
-audio,#mobile_play,.mobile{display:none}
+audio,#mobile_play,.mobile,#setting{display:none}
 #mim,#mvp{clear:both}
 html,body{font-family:consolas,"Microsoft JhengHei";max-width:900px;margin:10px auto}
 body{
@@ -151,13 +151,14 @@ text-shadow:
 @media (max-width: 768px) {
 
 #page{margin:0px 10px}
-#help{background:url("setting.png") right top no-repeat;background-size:20px;line-height:34px;font-size:16px;
-height:0px;overflow:hidden;padding-top:25px;margin:0px 5px
+#help{line-height:34px;font-size:16px;
+height:0px;overflow:hidden;padding-top:25px;margin:0px 5px;position:relative;
 }
 #help.on{height:auto;}
+#setting{position:absolute;right:0px; top:0px;display:block;cursor:pointer}
 #ico_alarm{margin-right:6px;}
-#help .left{float:none;margin:5px;}
-#help .right{float:none;text-align:left;margin:5px;border-bottom:1px solid #414141;padding-bottom:10px;}
+#help .left{float:none;}
+#help .right{float:none;text-align:left;border-bottom:1px solid #414141;padding-bottom:10px;}
 label{margin-left:4px;}
 .mobile{display:inline}
 h1{text-align:center;margin-bottom:10px;}
@@ -294,9 +295,9 @@ $("#sel_alert").change(function(){
 
 });
 
-$("#help").click(function(){
+$("#setting").click(function(){
 
-$(this).toggleClass("on")
+$("#help").toggleClass("on")
 })
 
 setInterval(countTime,500);
