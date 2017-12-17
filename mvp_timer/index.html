@@ -372,8 +372,8 @@ if(!$("#mon_"+i).hasClass("played")){
 playsound()
 $("#mon_"+i).addClass("played");
 		
-var n = new Notification("["+mons[i].name+"] 即將現身在 ["+mons[i].loc+"]", {
-		body: mons[i].race+"/"+mons[i].attr+"/"+mons[i].size,
+var n = new Notification("["+mons[i].name+"] 即將現身!", {
+		body: "出沒 ["+mons[i].loc+"] "+mons[i].race+"/"+mons[i].attr+"/"+mons[i].size,
 		icon: "img/"+mons[i].img+".png",
 });
 
