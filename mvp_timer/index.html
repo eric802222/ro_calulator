@@ -376,7 +376,7 @@ var n = new Notification("["+mons[i].name+"] 即將現身!", {
 		body: "["+mons[i].loc+"] "+mons[i].race+"/"+mons[i].attr+"/"+mons[i].size,
 		icon: "img/"+mons[i].img+".png",
 });
-n.onshow = function(){setTimeout(n.close, 2000);}
+n.onshow = function(){setTimeout(n.close.bind(n), 2000);}
 }
 }
 
