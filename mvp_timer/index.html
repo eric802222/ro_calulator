@@ -21,7 +21,7 @@
     enable_page_level_ads: true
   });
 </script>
-<title>RO手遊:MVP計時器</title>
+<title>RO手遊:MVP計時器 By 大雞毛</title>
 </head>
 <body class="chk_info chk_loc">
 <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
@@ -33,13 +33,13 @@
      data-ad-format="auto"></ins>
 
 <div id="page">
-<h1>RO手遊:MVP計時器</h1>
+<h1>RO手遊:MVP計時器&emsp;<span id="coder">By 大雞毛</span></h1>
 <div id="help">
 
 <div class="right">
 <input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;
 <input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>&emsp;
-通知音 <select id="sel_alert"><option value="0">戰鬥準備</option><option value="1">簡短通知</option></select>
+<span class="set_alert">通知音 <select id="sel_alert"><option value="0">戰鬥準備</option><option value="1">簡短通知</option></select></span>
 </div>
 <div class="left">
 <b>單擊:</b>開始計時&emsp;<b>雙擊:</b>取消計時&emsp;<b><span id="cus_time">右鍵</span>:</b>自訂時間
@@ -48,9 +48,18 @@
 <div id="min"></div>
 <div id="mvp"></div>
 </div>
+
+<audio id="alert0" preload="auto" controls="controls">
+      <source src="alert.mp3">
+</audio>
+<audio id="alert1" preload="auto" controls="controls">
+      <source src="alert2.mp3">
+</audio>
+	<p><input id="mobile_play" type="button" value="播放吧～" style="width:200px;height:100px;font-size:16pt;" onclick="javascript:playsound();" /></p>
 </body>
 
 <style>
+audio,#mobile_play{display:none}
 #mim,#mvp{clear:both}
 html,body{font-family:consolas,"Microsoft JhengHei";max-width:900px;margin:10px auto}
 body{
@@ -132,6 +141,7 @@ text-shadow:
 .ready .cover{background:rgba(255,200,0,0.5);}
 .last .cover{background:rgba(255,0,0,0.5);}
 
+#coder{font-size:14px}
 @media (max-width: 768px) {
 
 #page{margin:0px 10px}
@@ -143,6 +153,14 @@ text-shadow:
 
 <script>
 
+window.addEventListener('load', function () {
+  Notification.requestPermission(function (status) {
+    // This allows to use Notification.permission with Chrome/Safari
+    if (Notification.permission !== status) {
+      Notification.permission = status;
+    }
+  });
+});
 
 
 var timer=0;
@@ -150,7 +168,10 @@ var mon_time=[];
 var longpress = 600;
 var start;
 var timer_longpress;
-var alertmp3= ["alert.mp3","alert2.mp3"]
+
+var audio1 = new Audio("alert.mp3");
+var audio2 = new Audio("alert2.mp3");
+var alertmp3= [audio1,audio2]
 function inital(){
 
 
@@ -252,15 +273,24 @@ $("#ckb_loc").change(function(){
 
 var cusAlert=getCookie("sel_alert");
 if(cusAlert!=undefined)$("#sel_alert").val(getCookie("sel_alert"))
-console.log(cusAlert);
 $("#sel_alert").change(function(){
 	setCookie("sel_alert",$("#sel_alert").val());
-	var audio = new Audio(alertmp3[$("#sel_alert").val()]);
-	audio.loop = false;
-	audio.play();
+	playsound();
+
+
 });
 
+$("h1").click(function(){
+	var n = new Notification("快出發");
+		n.onshow = function () {
+		  setTimeout(n.close, 5000);
+}
+
+})
+
 setInterval(countTime,500);
+
+
 
 if($(window).width()<768){
 
@@ -342,9 +372,7 @@ $("#mon_"+i).addClass("last")
 
 //音效
 if(!$("#mon_"+i).hasClass("played")){
-var audio = new Audio(alertmp3[$("#sel_alert").val()]);
-audio.loop = false;
-audio.play();
+playsound()
 $("#mon_"+i).addClass("played");
 
 
@@ -394,7 +422,18 @@ function delCookie(name)
 }
 
 
-
+ function playsound()
+            {
+                $("#alert0")[0].play();
+                $("#alert0")[0].pause();
+				$("#alert1")[0].play();
+                $("#alert1")[0].pause();
+                setTimeout(function(){
+					
+                    $("#alert"+$("#sel_alert").val())[0].currentTime = 0;
+                    $("#alert"+$("#sel_alert").val())[0].play();
+                }, 100);
+            }
 
 inital();
 </script>
