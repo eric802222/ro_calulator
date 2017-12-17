@@ -281,10 +281,7 @@ $("#sel_alert").change(function(){
 });
 
 $("h1").click(function(){
-	var n = new Notification("Notify From HTML", {
-            body: "Hello World!",
-            icon: "img/"+mons[0].img+".png",
-        });
+
 
 })
 
@@ -374,10 +371,11 @@ $("#mon_"+i).addClass("last")
 if(!$("#mon_"+i).hasClass("played")){
 playsound()
 $("#mon_"+i).addClass("played");
-var n = new Notification(mons[i].name+" 即將現身!");
-		n.onshow = function () {
-		  setTimeout(n.close, 5000);
-}
+		
+var n = new Notification("["+mons[i].name+"] 即將現身在 ["+mons[i].loc+"]", {
+		body: mons[i].race+"/"+mons[i].attr+"/"+mons[i].size,
+		icon: "img/"+mons[i].img+".png",
+});
 
 }
 }
