@@ -281,10 +281,7 @@ $("#sel_alert").change(function(){
 });
 
 $("h1").click(function(){
-	var n = new Notification("快出發");
-		n.onshow = function () {
-		  setTimeout(n.close, 5000);
-}
+	
 
 })
 
@@ -374,7 +371,10 @@ $("#mon_"+i).addClass("last")
 if(!$("#mon_"+i).hasClass("played")){
 playsound()
 $("#mon_"+i).addClass("played");
-
+var n = new Notification(mons[i].name+" 即將現身!");
+		n.onshow = function () {
+		  setTimeout(n.close, 5000);
+}
 
 }
 }
