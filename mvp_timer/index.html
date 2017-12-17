@@ -37,7 +37,9 @@
 <div id="help">
 
 <div class="right">
-<input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;<input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>
+<input id="ckb_info" type="checkbox"><label for="ckb_info">顯示資訊</label>&emsp;
+<input id="ckb_loc" type="checkbox"><label for="ckb_loc">顯示地點</label>&emsp;
+通知音 <select id="sel_alert"><option value="0">戰鬥準備</option><option value="1">簡短通知</option></select>
 </div>
 <div class="left">
 <b>單擊:</b>開始計時&emsp;<b>雙擊:</b>取消計時&emsp;<b><span id="cus_time">右鍵</span>:</b>自訂時間
@@ -116,6 +118,8 @@ text-shadow:
 .loc{display:none}
 .ckb_loc .loc{display:block}
 
+#sel_alert{vertical-align:text-bottom}
+
 .ready .time,
 .last .time{line-height:30px;font-size:24;bottom:0px;background:transparent}
 
@@ -138,13 +142,15 @@ text-shadow:
 </style>
 
 <script>
+
+
+
 var timer=0;
 var mon_time=[];
-// how many milliseconds is a long press?
-    var longpress = 600;
-    // holds the start time
-    var start;
-	var timer_longpress
+var longpress = 600;
+var start;
+var timer_longpress;
+var alertmp3= ["alert.mp3","alert2.mp3"]
 function inital(){
 
 
@@ -244,6 +250,12 @@ $("#ckb_loc").change(function(){
 	changeSetting("ckb_loc",$("#ckb_loc:checked").val())
 });
 
+var cusAlert=getCookie("sel_alert");
+if(cusAlert!=undefined)$("#sel_alert").val(getCookie("sel_alert"))
+console.log(cusAlert);
+$("#sel_alert").change(function(){
+	setCookie("sel_alert",$("#sel_alert").val())
+});
 
 setInterval(countTime,500);
 
@@ -317,20 +329,22 @@ sec=sec%60;
 $("#mon_"+i).find(".time")[0].innerHTML=addZero(hr)+":"+addZero(min)+":"+addZero(sec)
 
 
-if(lasttime<300){
+if(lasttime<300&&lasttime>0){
 $("#mon_"+i).find(".time")[0].innerHTML=addZero(min)+":"+addZero(sec)
 $("#mon_"+i).addClass("ready")
 }
-if(lasttime<90){
+if(lasttime<90&&lasttime>0){
 
 $("#mon_"+i).addClass("last")
 
 //音效
 if(!$("#mon_"+i).hasClass("played")){
-var audio = new Audio('alert.mp3');
+var audio = new Audio(alertmp3[$("#sel_alert").val()]);
 audio.loop = false;
 audio.play();
 $("#mon_"+i).addClass("played");
+
+
 }
 }
 
