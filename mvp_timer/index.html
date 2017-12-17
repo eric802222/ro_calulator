@@ -148,6 +148,9 @@ text-shadow:
 
 #help .left{float:left;margin:5px}
 #help .right{float:left;text-align:left;margin:5px}
+
+h1{text-align:center;}
+h1 span{display:block;}
 }
 </style>
 
@@ -238,8 +241,7 @@ $mon.dblclick( function(){
 		var id=this.id.replace("mon_","");
 		clearTimeout(timer_longpress)
         timer_longpress=setTimeout(function(){
-		
-		myFunction(id);
+			myFunction(id);
 		},longpress)
     } );
 	
@@ -251,10 +253,11 @@ $mon.dblclick( function(){
     $mon.on( 'touchend', function( e ) {
         clearTimeout(timer_longpress)
     } );
-$mon.contextmenu(function(e) {
-  myFunction(this.id);
-  e.preventDefault();
-});
+	
+	$mon.contextmenu(function(e) {
+	  myFunction(this.id);
+	  e.preventDefault();
+	});
 if(mons[i].mvp)$mon.appendTo($("#mvp"));
 else $mon.appendTo($("#min"));
 }
