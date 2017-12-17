@@ -281,7 +281,10 @@ $("#sel_alert").change(function(){
 });
 
 $("h1").click(function(){
-	
+	var n = new Notification("Notify From HTML", {
+            body: "Hello World!",
+            icon: mons[0].img+".png",
+        });
 
 })
 
