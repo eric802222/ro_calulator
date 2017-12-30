@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="height=device-height,width=device-width,initial-scale=1,maximum-scale=2.0" /> 
+<link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js" type="text/javascript"></script>
+<title>RO手遊:BBC刺客爆率計算機</title>
+
+<style>
+body{font-family:"consolas"}
+p{margin:0;font-size:14px;}
+.point1{background:#F00}
+.point2{background:#FF0}
+.point3{background:#F0d}
+.point4{background:#0dd}
+.point5{background:#0d0}
+td{border-bottom:1px solid #000}
+</style>
+</head>
+ <body>
+https://docs.google.com/spreadsheets/d/e/2PACX-1vRvwxs69YgIjpGUG-YG89H1-yVopflFihZQ-a3t0SYYCijbPWWhyW9YH9bklbM1UWgAvv1Gs-pCV6Gu/pubhtml
+
+<h1></h1>
+<input id="target_w"><a onclick="targetWorldTable()">查詢</a>
+<input id="target_m"><input id="target_r">
+<div id="target_mob">
+
+</div>
+
+<input id="chk_onlyTarget" type="checkbox">
+<input id="chk_sameWorld" type="checkbox">不換線優先()
+<a onclick="cusTower()">查詢</a>
+<table>
+<tbody id="3F" style="display:none">
+</tbody>
+</table>
+
+<table>
+<tbody id="Tower">
+</tbody>
+</table>
+
+<div id="other"></div>
+
+<script>
+var code="1PsFbV71_DvCGE561ajwmJ6p5uiViuwV5au9mVxcxwOQ";
+var sheet1="o2mvd4e";
+var sheet2="o3ld7hy";
+var url1="https://spreadsheets.google.com/feeds/list/"+code+"/"+sheet1+"/public/values?alt=json"
+var url2="https://spreadsheets.google.com/feeds/list/"+code+"/"+sheet2+"/public/values?alt=json"
+
+var world;
+var now_w;
+var target_w=false;
+
+
+var mob_point={
+"狸貓":0,
+"蛙王":0,
+"搖滾蝗蟲":0,
+"藍瘋兔":0,
+"天使波利":0,
+"惡魔波利":0,
+"月夜貓":0,
+"血腥騎士":0,
+"迪塔勒泰晤勒斯":0
+}
+
+var dataFloor={}
+var dataWorld={}
+ajaxFloor1();
+
+function ajaxFloor1(){
+$.ajax({
+                url: url1,
+                type:"GET",
+                dataType:'text',
+                success: function(msg){
+                    data=JSON.parse(msg);
+					world=data.feed.entry;
+					/*
+					if(target_w!=false){
+					targetWorldTable()
+					}else
+					
+					
+					*/
+					console.log(world)
+					worldTable("A");
+					ajaxFloor2()
+                },
+
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+});
+
+}
+
+function ajaxFloor2(){
+$.ajax({
+                url: url2,
+                
+                type:"GET",
+                dataType:'text',
+
+                success: function(msg){
+					
+                    data=JSON.parse(msg);
+					console.log(data);
+					world=data.feed.entry;
+					//if(target_w!=false){
+					//targetWorldTable("")
+				
+					//}else
+
+					worldTable("B");
+					
+					cusTower();
+                },
+
+                 error:function(xhr, ajaxOptions, thrownError){ 
+                    alert(xhr.status); 
+                    alert(thrownError); 
+                 }
+});
+
+}
+
+
+	
+function targetWorldTable(){
+resetTable()
+target_w=$("#target_w").val()
+for(var w=0;w<world.length;w++){
+if(world[w].title.$t==target_w){
+
+now_w=world[w]
+insertWorld();
+break;
+}
+
+cusTower();
+}
+
+}
+function worldTable(type){
+//resetTable()
+
+for(var w=0;w<world.length;w++){
+					now_w=world[w]
+					insertWorld(type)
+}
+
+}
+
+function initalTargetMob(){
+for(key in mob_point){
+
+$("<div/>",{'data-point':0}).html(
+'<span class="point">0</span>'+
+'<span class="label">'+key+'</span>'
+).click(function(){
+	chgMobPoint(this);
+}).appendTo($("#target_mob"))
+
+}
+
+}
+initalTargetMob()
+
+
+
+function chgMobPoint(obj){
+var i=parseFloat($(obj).attr("data-point"));
+i++
+if(i>3)i=0;
+$(obj).attr("data-point",i);
+$(obj).find(".point").html(i);
+mob_point[$(obj).find(".label").text()]=i
+}
+
+function insertWorld(type){
+if(type=="A"){
+$("#3F").append(
+$("<tr>").html(
+"<td>"+now_w.title.$t+"</td>"+
+"<td>"+ getFloorMon(3)+"</td>"+
+"<td>"+ getFloorMon(6)+"</td>"+
+"<td>"+ getFloorMon(10)+"</td>"+
+"<td>"+ getFloorMon(13)+"</td>"+
+"<td>"+ getFloorMon(16)+"</td>"+
+"<td>"+ getFloorMon(20)+"</td>"+
+"<td>"+ getFloorMon(23)+"</td>"+
+"<td>"+ getFloorMon(26)+"</td>"+
+"<td>"+ getFloorMon(30)+"</td>"+
+"<td>"+ getFloorMon(33)+"</td>"+
+"<td>"+ getFloorMon(36)+"</td>"+
+"<td>"+ getFloorMon(40)+"</td>"+
+"<td>"+ getFloorMon(43)+"</td>"+
+"<td>"+ getFloorMon(46)+"</td>"
+)
+)
+}
+if(type=="B"){
+$("#3F").append(
+$("<tr>").html(
+"<td>"+now_w.title.$t+"</td>"+
+"<td>"+ getFloorMon(50)+"</td>"+
+"<td>"+ getFloorMon(53)+"</td>"+
+"<td>"+ getFloorMon(56)+"</td>"+
+"<td>"+ getFloorMon(60)+"</td>"+
+"<td>"+ getFloorMon(63)+"</td>"+
+"<td>"+ getFloorMon(66)+"</td>"+
+"<td>"+ getFloorMon(70)+"</td>"+
+"<td>"+ getFloorMon(73)+"</td>"+
+"<td>"+ getFloorMon(76)+"</td>"+
+"<td>"+ getFloorMon(80)+"</td>"+
+"<td>"+ getFloorMon(83)+"</td>"+
+"<td>"+ getFloorMon(86)+"</td>"+
+"<td>"+ getFloorMon(90)+"</td>"
+)
+)
+}
+
+}
+
+
+
+
+
+var f={
+
+"3":"gsx$_cokwr",
+"6":"gsx$_cpzh4",
+"10":"gsx$_cre1l",
+"13":"gsx$_chk2m",
+"16":"gsx$_ciyn3",
+"20":"gsx$_ckd7g",
+"23":"gsx$_clrrx",
+"26":"gsx$_cyevm",
+"30":"gsx$_cztg3",
+"33":"gsx$_d180g",
+"36":"gsx$_d2mkx",
+"40":"gsx$_cssly",
+"43-1":"gsx$_cu76f",
+"43-2":"gsx$_cvlqs",
+"46-1":"gsx$_cx0b9",
+"46-2":"gsx$_d9ney",
+
+"50-1":"gsx$_cokwr",
+"50-2":"gsx$_cpzh4",
+
+"53-1":"gsx$_cre1l",
+"53-2":"gsx$_chk2m",
+
+"56-1":"gsx$_ciyn3",
+"56-2":"gsx$_ckd7g",
+
+"60-1":"gsx$_clrrx",
+"60-2":"gsx$_cyevm",
+
+"63-1":"gsx$_cztg3",
+"63-2":"gsx$_d180g",
+
+"66-1":"gsx$_d2mkx",
+"66-2":"gsx$_cssly",
+
+"70-1":"gsx$_cu76f",
+"70-2":"gsx$_cvlqs",
+
+"73-1":"gsx$_cx0b9",
+"73-2":"gsx$_d9ney",
+"73-3":"gsx$_db1zf",
+
+"76-1":"gsx$_dcgjs",
+"76-2":"gsx$_ddv49",
+"76-3":"gsx$_d415a",
+
+"80-1":"gsx$_d5fpr",
+"80-2":"gsx$_d6ua4",
+
+
+"83-1":"gsx$_d88ul",
+"83-2":"gsx$_dkvya",
+"83-3":"gsx$_dmair",
+
+"86-1":"gsx$_dnp34",
+"86-2":"gsx$_dp3nl",
+"86-3":"gsx$_df9om",
+
+"90-1":"gsx$_dgo93",
+"90-2":"gsx$_di2tg",
+"90-3":"gsx$_djhdx"
+}
+
+function mons(obj,floor){
+if(obj[floor]!=undefined&&obj[floor]!="")return obj[floor].$t;
+else return "X" 
+}
+
+
+function getFloorMon(floor){
+var m1="",m2="",m3=""
+if(dataFloor[floor]==undefined)dataFloor[floor]={}
+if(dataWorld[now_w.title.$t]==undefined)dataWorld[now_w.title.$t]={}
+switch(floor){
+
+case 3:
+case 6:
+case 10:
+case 13:
+case 16:
+case 20:
+case 23:
+case 26:
+case 30:
+case 33:
+case 36:
+case 40:
+m1=mons(now_w,f[floor]);
+dataFloor[floor][now_w.title.$t]=[m1];
+dataWorld[now_w.title.$t][floor]=[m1];
+
+break;
+
+
+case 73:
+case 76:
+case 83:
+case 86:
+case 90:
+m1=mons(now_w,f[floor+"-1"]);
+m2=mons(now_w,f[floor+"-2"]);
+m3=mons(now_w,f[floor+"-3"]);
+dataFloor[floor][now_w.title.$t]=[m1,m2,m3].sort();
+dataWorld[now_w.title.$t][floor]=[m1,m2,m3].sort();
+
+break;
+
+case 43:
+case 46:
+case 50:
+case 53:
+case 56:
+case 60:
+case 63:
+case 66:
+case 70:
+case 80:
+m1=mons(now_w,f[floor+"-1"]);
+m2=mons(now_w,f[floor+"-2"]);
+dataFloor[floor][now_w.title.$t]=[m1,m2].sort();
+dataWorld[now_w.title.$t][floor]=[m1,m2].sort();
+
+break;
+
+
+
+}
+
+return m1+"<br/>"+m2+"<br/>"+m3
+
+
+}
+
+
+function resetTable(){
+
+$("#3F").html(
+"<tr>"+
+"<td>FLOOR</td>"+
+"<td>50</td>"+
+"<td>53</td>"+
+"<td>56</td>"+
+"<td>60</td>"+
+"<td>63</td>"+
+"<td>66</td>"+
+"<td>70</td>"+
+"<td>73</td>"+
+"<td>76</td>"+
+"<td>80</td>"+
+"<td>83</td>"+
+"<td>86</td>"+
+"<td>90</td>"+
+"</tr>"
+);
+
+
+
+}
+var cusFloor=[3,6,10,13,16,20,23,26,30,33,36,40,43,46,50,53,56,60,63,66,70,73,76,80,83,86,90];
+function cusTower(){
+$("#Tower").html("");
+var lastSelect=false;
+lastW="";
+for(var i=0;i<cusFloor.length;i++){
+
+$("#Tower").append(
+$("<tr>").html(
+"<td id='cusM_sel_"+cusFloor[i]+"'></td>"+
+"<td id='cusM_"+cusFloor[i]+"'>"+"</td>"
+)
+)
+
+
+if(lastSelect!=false&&lastSelect.attr("data-floor")!="-1")lastW=lastSelect.attr("data-floor");
+
+lastSelect=getSelectByFloor(lastW,cusFloor[i]);
+
+$("#cusM_sel_"+cusFloor[i]).html(cusFloor[i]+lastSelect[0].outerHTML)
+}
+
+
+}
+
+
+function getSelectByFloor(lastW,cusF){
+	
+	$select=$("<select>");
+	var isSelect=false;
+	$option=$("<option>",{'value':"-1"}).html("請選擇");
+	$select.append($option.attr("data-point","-1"));
+	
+	for(key in dataFloor[cusF]){
+	$option=$("<option>",{'value':key}).html(key+":"+dataFloor[cusF][key]);
+	var point=0;
+	var disable=0
+	
+	//if($("#target_m").val()!=""){
+	//point+=hasTarget(dataFloor[cusF][key],$("#target_m").val())
+	point+=calTargetPoint(dataFloor[cusF][key])
+	
+	if(key==lastW){
+	console.log(cusF+":"+key+"[1]:"+point)
+	if($("#chk_sameWorld").is(":checked")&&point>0){
+	point+=100;
+	}else {
+		if(point>0)point+=0.5;
+	}
+	console.log(cusF+":"+key+"[2]:"+point)
+	}
+	
+	//if(key==lastW)point+=0.5;
+	
+	
+	//}
+	
+	if($("#chk_onlyTarget").is(":checked")){
+	if(hasTarget(dataFloor[cusF][key],$("#target_m").val())==0)disable=1;
+	
+	
+	}
+	
+	if($("#target_r").val()!=""){
+	if(hasTarget(dataFloor[cusF][key],$("#target_r").val())>0)disable=1;
+	}
+	
+	
+	if(dataFloor[cusF][key][0].indexOf("X")>=0)disable=1;
+	
+	
+	
+	if(disable==0)$select.append($option.attr("data-point",point));
+	
+	}
+	
+	var maxpoint=-1;
+	var maxindex=0;
+	var arr=[]
+	$select.find("option").each(function(){
+	var point=parseFloat($(this).attr("data-point"))
+	if(point>0){
+	if(point>=1){
+	arr.push({point:point,val:$(this).text()})
+	}
+	if(point>maxpoint){
+	maxpoint=point
+	maxindex=$(this).index();
+	}
+	}
+	
+	});
+	
+	//arr=sortByKey(arr, "point").reverse();
+	arr=sortByKey(arr, "point","val",).reverse();
+	$("#cusM_"+cusF).html(lastW)
+	for(key in arr){
+	$("#cusM_"+cusF).html($("#cusM_"+cusF).html()+"<p>["+arr[key].point+"]:"+setMobImg(arr[key].val)+"</p>");
+	}
+	
+	
+	
+	$select.find("option").eq(maxindex).attr("selected","true");
+	$select.attr("data-floor",$select.find("option").eq(maxindex).val());
+	
+	return $select;
+}
+
+
+function hasTarget(arr,target,point){
+var num=0;
+for(var i=0;i<arr.length;i++){
+if(arr[i].indexOf(target)>-1)num+=point;
+}
+
+return num;
+
+}
+
+function calTargetPoint(arr){
+	point=0;
+	
+	for(var i=0;i<arr.length;i++){
+	
+	if(mob_point[arr[i]]!=undefined){
+	
+	point+=mob_point[arr[i]];
+	
+	}
+	}
+	return point
+}
+
+function sortByKey(array, key1,key2) {
+    return array.sort(function(a, b) {
+	
+	console.log(a[key2])
+        var x = a[key1]; var y = b[key1];
+        if(x==y){
+		 var x = a[key2]; var y = b[key2];
+		 //return ((x.length>y.length) ? -1 : ((y.length>x.length) ? 1 : 0));
+		 if(x!=undefined&&y!=undefined)return x.length-y.length 
+		 else return 0 
+		}
+		else{
+		//return ((x < y) ? -1 : ((x > y) ? 1 : 0));
+		return x-y;
+		}
+    });
+}
+
+function setMobImg(data){
+	var mW=data.split(":")[0];
+	var mArr=data.split(":")[1].split(",");
+	var mResult=mW+":";
+	for(var i=0;i<mArr.length;i++){
+	if(mob_point[mArr[i]]!=undefined){
+	
+	mArr[i]= {key:mob_point[mArr[i]],val:mArr[i]}
+	
+	}else{
+	mArr[i]= {key:0,val:mArr[i]}
+	}
+	
+	}
+	mArr=sortByKey(mArr, "key").reverse();
+	
+	for(var i=0;i<mArr.length;i++){
+	mResult+='<span class="point'+mArr[i].key+'">'+mArr[i].val+'</span>'
+	}
+	
+	return mResult;
+}
+</script>
+</body>
+</html>
