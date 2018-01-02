@@ -35,12 +35,17 @@ color:#414141;
 user-select: none;
 }
 #page{margin:15px;}
-h2{margin:5px 0px;}
+#coder{font-size:14px}
+h2{margin:0px;line-height:32px;}
 img{width:100%}
+.wrap{margin-bottom:5px;}
+.tab_wrap{float:right;text-align:right;height:32px;}
+.tab{cursor:pointer;background:#ddd;padding:2px 5px;margin:5px 0px;display:inline-block}
+.tab:hover{font-weight:bold;}
 
-.tab_wrap{text-align:right;margin-bottom:5px}
-.tab{cursor:pointer}
-.tab:hover{font-weight:bold}
+@media (max-width: 768px) {
+.tab_wrap{float:none;margin-bottom:15px;text-align:left;}
+}
 </style>
 </head>
 <body class="chk_info chk_loc">
@@ -54,8 +59,12 @@ img{width:100%}
 	 
 <div id="page">
 <h1>RO手遊:公會遺跡 <span id="coder">By 大雞毛</span></h1>
+<div class="wrap">
 <div class="tab_wrap"><a class="tab" onclick="chg(40)">Lv.40</a>&emsp;<a class="tab" onclick="chg(60)">Lv.60</a>&emsp;<a class="tab" onclick="chg(80)">Lv.80</a></div>
 <h2>20180101 公會遺跡 LV.<span id="lv">40</span></h2>
+</div>
+
+
 
 <img id="map" src="img/20180101_60.png">
 </div>
