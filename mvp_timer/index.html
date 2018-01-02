@@ -193,7 +193,9 @@ var timer_longpress;
 
 var audio1 = new Audio("alert.mp3");
 var audio2 = new Audio("alert2.mp3");
-var alertmp3= [audio1,audio2]
+var alertmp3= [audio1,audio2];
+
+var onCount=[];
 function inital(){
 
 
@@ -428,7 +430,14 @@ resetMon(i)
 $("#mon_"+i).find(".time")[0].innerHTML= ""
 }
 }
+
+if(lasttime>0){
+
+
 }
+}
+
+
 
 function resetMon(i){
 mon_time[i]=false;
