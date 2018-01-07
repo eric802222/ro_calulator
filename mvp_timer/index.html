@@ -8,7 +8,7 @@
  <script src="mon.js" type="text/javascript"></script>
  <script src="jquery.mousewheel.min.js" type="text/javascript"></script>
  <link rel='stylesheet' href="http://fonts.googleapis.com/earlyaccess/notosanstc.css" type='text/css' />
-
+ <script src='voicerss-tts.min.js'></script>
  
  <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47709090-4"></script>
@@ -252,7 +252,7 @@ color:#FFF;
 width: 100px;
     position: relative;
     left: 50%;
-    margin-left: -50px;
+    margin-left: -60px;
     top: 0px;
     text-align: center;
     border-radius: 10px 10px 0px 0px;
@@ -927,8 +927,17 @@ if($(window).width()<500){
     enable_page_level_ads: true
    });
 }
-
-
+/*
+VoiceRSS.speech({
+            key: 'fb4f1ea5fd65489a86c2bd0529aa35e9',
+            src: '獸人嬰兒已現身',
+            hl: 'zh-tw',
+            r: 6, 
+            c: 'mp3',
+            f: '8khz_8bit_mono',
+            ssml: false
+        });
+*/
 
 </script>
 </html>
