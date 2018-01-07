@@ -14,7 +14,7 @@ mvp:false
 
 {
 lv:10,
-name:"藍瘋兔(迷藏)",
+name:"(迷藏)藍瘋兔",
 img:"eclipse",
 time:60,
 race:"動物",
@@ -26,8 +26,8 @@ mvp:false
 
 {
 lv:10,
-name:"藍瘋兔(南門)",
-img:"eclipse",
+name:"(南門)藍瘋兔",
+img:"eclipse_2",
 time:30,
 race:"動物",
 attr:"無",
@@ -51,7 +51,7 @@ mvp:false
 
 {
 lv:20,
-name:"搖滾蝗蟲",
+name:"(西門)搖滾蝗蟲",
 img:"vocal",
 time:30,
 race:"昆蟲",
@@ -63,8 +63,8 @@ mvp:false
 
 {
 lv:20,
-name:"搖滾蝗蟲",
-img:"vocal",
+name:"(迷藏)搖滾蝗蟲",
+img:"vocal_2",
 time:60,
 race:"昆蟲",
 attr:"地",
