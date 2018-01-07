@@ -712,7 +712,7 @@ if(!$(".mon_"+i).hasClass("played")){
 	audio3.playbackRate = 1.7;
 	audio3.play();
 	*/
-	notifyMe(mons[i])
+	notifyMe(mons[i],"即將現身")
 }
 }
 if(lasttime<=0&&lasttime>=-cusShowtime){
@@ -723,7 +723,7 @@ if(lasttime<0&&!$(".mon_"+i).hasClass("show")){
 
 delayTTS("走了,"+mons[i].name+"已現身",0);
 
-notifyMe(mons[i])
+notifyMe(mons[i],"已現身")
 
 if(repeats>0)playsound();
 }
@@ -787,11 +787,11 @@ else return i;
 
 }
 
-function notifyMe(mons){
+function notifyMe(mons,type){
 if(repeats>0&&$("body").hasClass("ckb_notify")){
 if (('Notification' in window)) {
 if (Notification.permission == "granted") {
-    var n = new Notification("["+mons.name+"] 已現身!", {
+    var n = new Notification("["+mons.name+"] "+type+"!", {
 		body: "["+mons.loc+"] "+mons.race+"/"+mons.attr+"/"+mons.size,
 		icon: "img/"+mons.img+".png",
 });
