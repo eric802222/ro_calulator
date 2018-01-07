@@ -14,7 +14,7 @@ mvp:false
 
 {
 lv:10,
-name:"藍瘋兔",
+name:"藍瘋兔(迷藏)",
 img:"eclipse",
 time:60,
 race:"動物",
@@ -26,7 +26,7 @@ mvp:false
 
 {
 lv:10,
-name:"藍瘋兔",
+name:"藍瘋兔(南門)",
 img:"eclipse",
 time:30,
 race:"動物",
