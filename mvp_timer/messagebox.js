@@ -18,7 +18,7 @@ MessageBox - A jQuery Plugin to replace Javascript's window.alert(), window.conf
         message         : "",
         queue           : true,
         speed           : 000,
-        top             : "0%",
+        top             : "10%",
         width           : "auto"
     };
     
