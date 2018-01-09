@@ -12,6 +12,8 @@
  
  <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-47709090-4"></script>
+<link rel="stylesheet" href="messagebox.css">
+<script src="messagebox.js"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -92,7 +94,7 @@
 <div id="min"></div>
 <div id="mvp"></div>
 <div id="queue"><h4>現身排序</h4><div class="wrap"></div></div>
-<input type="tel">
+<input id="demo" type="tel">
 </div>
 
 
@@ -947,7 +949,21 @@ $("#queue").css("bottom", -$('#queue .wrap').outerHeight())
 	  
     });
 $(window).resize(onSizeChange);
+
+$( "#demo" ).click(function() {
+  $.MessageBox({
+    input    : true,
+    message  : "What's your name?"
+}).done(function(data){
+    if ($.trim(data)) {
+        $.MessageBox("Hi <b>"+data+"</b>!");
+    } else {
+        $.MessageBox("You are shy, aren't you?");
+    }
+});
+});
 </script>
+
 <script>
 //桌面至頂廣告
 (adsbygoogle = window.adsbygoogle || []).push({});
