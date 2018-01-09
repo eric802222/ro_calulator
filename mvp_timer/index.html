@@ -681,7 +681,7 @@ function setMonTime(id,time){
    var mSec=0;
    var mMin=0;
    var mHour=0;
-   var arr_time=time.split(".");
+   var arr_time=time.replace(/\;/g,".").split(".");
    if(arr_time.length<=3){
    
    if(arr_time.length==3){
