@@ -645,7 +645,7 @@ function myFunction(mid){
 	if($(window).width()>500){
 		var txt;
 		var time=$(".m_"+mid).attr("data-time");
-		var person = prompt("輸入剩餘分鐘,可用分隔[時.分.秒]或[時;分;秒]", time);
+		var person = prompt("輸入剩餘分鐘,可用分隔[時.分.秒]或[時,分,秒]", time);
 		if (person == null || person == "") {
 		   alert("時間輸入錯誤");
 		   ispop=false;
@@ -656,7 +656,7 @@ function myFunction(mid){
 	}else{
 	  $.MessageBox({
 		input    : true,
-		message  : "輸入剩餘分鐘,可用分隔[時.分.秒]或[時;分;秒]"
+		message  : "輸入剩餘分鐘,可用分隔[時.分.秒]或[時,分,秒]"
 	}).done(function(data){
 		if (data == null || data == "") {
 		   alert("時間輸入錯誤");
@@ -681,7 +681,7 @@ function setMonTime(id,time){
    var mSec=0;
    var mMin=0;
    var mHour=0;
-   var arr_time=time.replace(/\;/g,".").split(".");
+   var arr_time=time.replace(/\,/g,".").split(".");
    if(arr_time.length<=3){
    
    if(arr_time.length==3){
