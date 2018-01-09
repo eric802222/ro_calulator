@@ -642,16 +642,31 @@ var ispop=false;
 function myFunction(mid){
     if(!ispop){
 	ispop=true;
-    var txt;
-	var time=$(".m_"+mid).attr("data-time");
-    var person = prompt("手動輸入剩餘時間(可用小數點輸入秒數)", time);
-    if (person == null || person == "") {
-       alert("時間輸入錯誤");
-	   ispop=false;
-    } else {
-		setMonTime(mid,person);
-		ispop=false;
-    }
+	if($(window).width()>500){
+		var txt;
+		var time=$(".m_"+mid).attr("data-time");
+		var person = prompt("輸入剩餘分鐘,可用分隔[時.分.秒]或[時;分;秒]", time);
+		if (person == null || person == "") {
+		   alert("時間輸入錯誤");
+		   ispop=false;
+		} else {
+			setMonTime(mid,person);
+			ispop=false;
+		}
+	}else{
+	  $.MessageBox({
+		input    : true,
+		message  : "輸入剩餘分鐘,可用分隔[時.分.秒]或[時;分;秒]"
+	}).done(function(data){
+		if (data == null || data == "") {
+		   alert("時間輸入錯誤");
+		   ispop=false;
+		} else {
+			setMonTime(mid,person);
+			ispop=false;
+		}
+	});
+	}
 	}
     //document.getElementById("demo").innerHTML = txt;
 }
@@ -950,19 +965,6 @@ $("#queue").css("bottom", -$('#queue .wrap').outerHeight())
     });
 $(window).resize(onSizeChange);
 
-$( "#demo" ).click(function() {
-  $.MessageBox({
-    input    : true,
-    message  : "What's your name?"
-}).done(function(data){
-    if ($.trim(data)) {
-        $.MessageBox("Hi <b>"+data+"</b>!");
-    } else {
-        $.MessageBox("You are shy, aren't you?");
-    }
-});
-
-});
 
 </script>
 
