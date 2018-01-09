@@ -61,7 +61,7 @@
 </div>
 
 <div class="col">
-<input id="ckb_notify" type="checkbox"><label for="ckb_notify">桌面通知</label>
+<input id="ckb_notify" type="checkbox"><label for="ckb_notify">桌面通知</label><span class="mobile"> (手機版暫不支援)</span>
 </div>
 
 <div class="col">
@@ -829,7 +829,7 @@ else return i;
 }
 
 function notifyMe(mons,type){
-if(repeats>0&&$("body").hasClass("ckb_notify")){
+if($(window).width()>500&&repeats>0&&$("body").hasClass("ckb_notify")){
 if (('Notification' in window)) {
 if (Notification.permission == "granted") {
     var n = new Notification("["+mons.name+"] "+type+"!", {
