@@ -1,0 +1,114 @@
+/* Variables */
+/* Colors */
+/* Sizes */
+@import url(https://fonts.googleapis.com/icon?family=Material+Icons);
+@import 'https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i';
+#addui-dialog-overlay {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 101;
+}
+
+#addui-dialog-overlay * {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+}
+
+#addui-dialog-overlay form.addui-dialog {
+  display: block;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #ffffff;
+  border-radius: 2px;
+  box-shadow: 0 7px 8px -4px rgba(0, 0, 0, 0.2), 0 13px 19px 2px rgba(0, 0, 0, 0.14), 0 5px 24px 4px rgba(0, 0, 0, 0.12);
+  margin: 0;
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-title {
+  display: block;
+  padding: 24px;
+  flex: none;
+  overflow: hidden;
+  font-size: 28px;
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.87);
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-contents {
+  display: block;
+  flex: 1;
+  overflow: auto;
+  padding: 0 24px;
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-contents:first-child p:first-child {
+  padding-top: 16px;
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-contents p {
+  display: block;
+  margin: 0;
+  padding: 16px 0;
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-contents p:first-child {
+  padding-top: 0;
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-controls {
+  display: block;
+  text-align: right;
+}
+
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-controls button,
+#addui-dialog-overlay form.addui-dialog div.addui-dialog-controls button:hover {
+  display: inline-block;
+  padding: 24px;
+  font-size: 18px;
+  text-transform: uppercase;
+  color: #3f51b5;
+  font-weight: 700;
+  cursor: pointer;
+  border: 0;
+  outline: none;
+  background: transparent;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: 0px 0px 0px 0px transparent;
+  text-align: center;
+  vertical-align: top;
+  line-height: 1.15em;
+}
+
+#addui-dialog-overlay form.addui-dialog.error .addui-dialog-title,
+#addui-dialog-overlay form.addui-dialog.error .addui-dialog-controls button {
+  color: #f44336;
+}
+
+#addui-dialog-overlay form.addui-dialog.warning .addui-dialog-title,
+#addui-dialog-overlay form.addui-dialog.warning .addui-dialog-controls button {
+  color: #ff9800;
+}
+
+#addui-dialog-overlay form.addui-dialog.success .addui-dialog-title,
+#addui-dialog-overlay form.addui-dialog.success .addui-dialog-controls button {
+  color: #4caf50;
+}
+
+#addui-dialog-overlay form.addui-dialog.accent .addui-dialog-title,
+#addui-dialog-overlay form.addui-dialog.accent .addui-dialog-controls button {
+  color: #ff4081;
+}
+
+/*# sourceMappingURL=AddDialog.css.map */
