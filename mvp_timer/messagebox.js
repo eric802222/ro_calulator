@@ -288,7 +288,7 @@ MessageBox - A jQuery Plugin to replace Javascript's window.alert(), window.conf
         if (settingsInput === true || typeof settingsInput === "string") {
             return _FormatInput($("<input>", {
                 value   : (settingsInput === true) ? "" : settingsInput,
-                type    : "text"
+                type    : "tel"
             }), {
                 autotrim    : true
             });
@@ -300,7 +300,7 @@ MessageBox - A jQuery Plugin to replace Javascript's window.alert(), window.conf
             $.each(settingsInput, function(i, value){
                 ret = ret.add(_FormatInput($("<input>", {
                     value   : value,
-                    type    : "text"
+                    type    : "tel"
                 }), {
                     autotrim    : true
                 }));
