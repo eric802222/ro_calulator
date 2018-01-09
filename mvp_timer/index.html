@@ -820,7 +820,7 @@ function delayTTS(txt,time){
 
 function TTS(txt){
 isPlaying=true;
-if($(window).width()<768) responsiveVoice.speak(txt,'Chinese Female', {rate: 1.25, volume: 3,onend:function(){isPlaying=false}});
+if($(window).width()<768) responsiveVoice.speak(txt,'Chinese Female', {rate: 1.2, volume: 3,onend:function(){isPlaying=false}});
 else responsiveVoice.speak(txt,'Chinese Female', {rate: 1.35, volume: 3,onend:function(){isPlaying=false}});
 }
 
