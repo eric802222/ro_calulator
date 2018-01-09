@@ -779,8 +779,10 @@ if(lasttime<0&&!$(".mon_"+i).hasClass("show")){
 
 delayTTS("走了,"+mons[i].name+"已現身",0);
 
-notifyMe(mons[i],"已現身")
-sendGA("show",mons[i].name,"")
+notifyMe(mons[i],"已現身");
+var type="mvp";
+if(!mons[i].mvp)type="mini"
+sendGA(type,mons[i].name)
 if(repeats>0)playsound();
 }
 
@@ -965,14 +967,12 @@ $("#queue").css("bottom", -$('#queue .wrap').outerHeight())
     });
 $(window).resize(onSizeChange);
 
-function sendGA(ec,ea,el){
-	
-	ga('send', {
-	hitType: 'event',
-	eventCategory: ec,
-	eventAction: ea,
-	eventLabel: el
-	});
+function sendGA(ec,el){
+	gtag('event', 'boss', {
+  'event_category': ec,
+  'event_label': el
+});
+
 
 }
 
