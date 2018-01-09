@@ -166,7 +166,9 @@ text-shadow:
 	border-radius:0px 0px 8px 8px;
 	
 }
-.show .showing{width:100%;height:100%;background:url("showing.png");position:absolute;top:0px;left:0px;}
+.show .showing{width:100%;height:100%;background:url("showing.png");
+background-size:100%;
+position:absolute;top:0px;left:0px;}
 
 label{cursor:pointer}
 .mon .race{position:absolute;right:5px;top:4px;line-height:16px;display:none;}
@@ -938,10 +940,10 @@ $("#queue").css("bottom", -$('#queue .wrap').outerHeight())
 }
 
  $('#queue .wrap').mousewheel(function(e, delta) {
-	  if($(window).width()>500){
+	 
 	  this.scrollLeft -= (delta * 60);
         e.preventDefault();
-	  }
+	  
     });
 $(window).resize(onSizeChange);
 </script>
