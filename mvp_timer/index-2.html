@@ -996,6 +996,7 @@ function sendGA(ec,el){
 
 //網頁層級廣告
 if($(window).width()<500){
+	$("#msg_win").remove();
 	$("#ad").remove();
 	(adsbygoogle = window.adsbygoogle || []).push({
     google_ad_client: "ca-pub-8384162002444497",
