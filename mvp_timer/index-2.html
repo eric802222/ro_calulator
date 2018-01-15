@@ -94,7 +94,17 @@
 <div id="mvp"></div>
 <div id="queue"><h4>現身排序</h4><div class="wrap"></div></div>
 </div>
-
+<div id="msg_win">
+  <div class="icos"><a id="msg_close" title="關閉" href="javascript:void(0);">╳</a></div>
+  <div id="msg_title">廣告</div>
+  <div id="msg_content"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 小方窗 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:300px;height:250px"
+     data-ad-client="ca-pub-8384162002444497"
+     data-ad-slot="2801808845"></ins>
+</div>
+</div>
 
 <!--
 <audio id="alert0" preload="auto" controls="controls">
@@ -992,8 +1002,29 @@ if($(window).width()<500){
     enable_page_level_ads: true
    });
 }
+/*
+VoiceRSS.speech({
+            key: 'fb4f1ea5fd65489a86c2bd0529aa35e9',
+            src: '獸人嬰兒已現身',
+            hl: 'zh-tw',
+            r: 6, 
+            c: 'mp3',
+            f: '8khz_8bit_mono',
+            ssml: false
+        });
+*/
+$("#msg_close").click(function(){$("#msg_win").remove()})
 </script>
 
+<style type="text/css">
+#msg_win{position:fixed;right:0px;bottom:0px;width:300px;font-size:12px;display:block;overflow:hidden;z-index:99;border:0px solid #000;background:#FFF;
+}
 
+#msg_title{background:#555;border:0px solid #000;border-width:0 0 0px 0;color:#FFFFFF;width:100%;height:26px;line-height:26px;font-weight:bold;text-indent:5px;}
+#msg_win .icos{position:absolute;top:0px;*top:0px;right:0px;z-index:9;}
+.icos a{float:left;color:#FFFFFF;margin:1px;text-align:center;font-weight:bold;width:14px;height14px;line-height:14px;padding:1px;text-decoration:none;background:#222;margin:5px;}
+.icos a:hover{color:#FFCC00;}
+#msg_content{margin:0px 0px;padding:5px 5px;width:100%;height:250px;overflow:hidden;}
+</style>
 
 </html>
