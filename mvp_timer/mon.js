@@ -624,6 +624,29 @@ loc:"鐘塔地下",
 mvp:true
 },
 
+{
+lv:116,
+name:"魔靈娃娃",
+img:"chepet",
+time:30,
+race:"人形",
+attr:"火",
+size:"中",
+loc:"玩具工場2F",
+mvp:false
+},
+
+{
+lv:115,
+name:"冰暴騎士",
+img:"stormy_knight",
+time:120,
+race:"無形",
+attr:"風",
+size:"大",
+loc:"玩具工場1F",
+mvp:true
+},
 ]
 
 
