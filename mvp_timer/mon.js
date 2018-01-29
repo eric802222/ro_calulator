@@ -432,7 +432,7 @@ mvp:true
 
 {
 lv:90,
-name:"顎梟首領",
+name:"鶚梟首領",
 img:"owl_duke",
 time:30,
 race:"惡魔",
@@ -455,7 +455,7 @@ mvp:false
 },
 {
 lv:93,
-name:"顎蕭男爵",
+name:"鶚梟男爵",
 img:"owl_baron",
 time:120,
 race:"惡魔",
