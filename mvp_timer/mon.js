@@ -495,7 +495,7 @@ url:'20015'
 },
 {
 lv:93,
-name:"顎蕭男爵",
+name:"鶚梟男爵",
 img:"owl_baron",
 time:120,
 race:"惡魔",
