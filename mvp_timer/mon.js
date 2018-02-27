@@ -9,7 +9,8 @@ race:"動物",
 attr:"地",
 size:"小",
 loc:"南門",
-mvp:false
+mvp:false,
+url:'20001'
 },
 
 {
@@ -21,7 +22,8 @@ race:"動物",
 attr:"無",
 size:"中",
 loc:"迷藏森林",
-mvp:false
+mvp:false,
+url:'20002'
 },
 
 {
@@ -33,6 +35,8 @@ race:"動物",
 attr:"無",
 size:"中",
 loc:"南門",
+mvp:false,
+url:'20002'
 },
 
 
@@ -46,7 +50,8 @@ race:"植物",
 attr:"水",
 size:"中",
 loc:"迷藏森林",
-mvp:false
+mvp:false,
+url:'20017'
 },
 
 {
@@ -58,7 +63,8 @@ race:"昆蟲",
 attr:"地",
 size:"中",
 loc:"西門",
-mvp:false
+mvp:false,
+url:'20003'
 },
 
 {
@@ -70,7 +76,8 @@ race:"昆蟲",
 attr:"地",
 size:"中",
 loc:"迷藏森林",
-mvp:false
+mvp:false,
+url:'20003'
 },
 
 {
@@ -82,7 +89,8 @@ race:"天使",
 attr:"聖",
 size:"中",
 loc:"南門",
-mvp:true
+mvp:true,
+url:'30001'
 },
 
 {
@@ -94,7 +102,8 @@ race:"昆蟲",
 attr:"火",
 size:"大",
 loc:"下水道2F",
-mvp:true
+mvp:true,
+url:'30002'
 },
 
 {
@@ -106,7 +115,8 @@ race:"惡魔",
 attr:"暗",
 size:"中",
 loc:"迷藏森林",
-mvp:true
+mvp:true,
+url:'30003'
 },
 {
 lv:35,
@@ -117,7 +127,8 @@ race:"惡魔",
 attr:"念",
 size:"中",
 loc:"幽靈船",
-mvp:false
+mvp:false,
+url:'20004'
 },
 {
 lv:40,
@@ -128,7 +139,8 @@ race:"不死",
 attr:"不死",
 size:"中",
 loc:"幽靈船",
-mvp:true
+mvp:true,
+url:'30004'
 },
 {
 lv:40,
@@ -139,7 +151,8 @@ race:"魚貝",
 attr:"水",
 size:"中",
 loc:"海底洞穴",
-mvp:false
+mvp:false,
+url:'20005'
 },
 {
 lv:45,
@@ -150,7 +163,8 @@ race:"魚貝",
 attr:"水",
 size:"大",
 loc:"海底洞穴",
-mvp:true
+mvp:true,
+url:'30005'
 },
 {
 lv:45,
@@ -161,7 +175,8 @@ race:"無形",
 attr:"風",
 size:"大",
 loc:"哥布林森林",
-mvp:false
+mvp:false,
+url:'20006'
 },
 
 {
@@ -173,7 +188,8 @@ race:"人形",
 attr:"風",
 size:"中",
 loc:"哥布林森林",
-mvp:true
+mvp:true,
+url:'30006'
 },
 
 {
@@ -185,7 +201,8 @@ race:"昆蟲",
 attr:"風",
 size:"小",
 loc:"妙勒尼",
-mvp:false
+mvp:false,
+url:'20007'
 },
 
 {
@@ -197,7 +214,8 @@ race:"昆蟲",
 attr:"風",
 size:"小",
 loc:"妙勒尼",
-mvp:true
+mvp:true,
+url:'30007'
 },
 
 {
@@ -209,7 +227,8 @@ race:"動物",
 attr:"地",
 size:"中",
 loc:"夢羅克",
-mvp:false
+mvp:false,
+url:'20008'
 },
 
 {
@@ -221,7 +240,8 @@ race:"昆蟲",
 attr:"地",
 size:"大",
 loc:"螞蟻密穴",
-mvp:true
+mvp:true,
+url:'30008'
 },
 
 {
@@ -233,7 +253,8 @@ race:"動物",
 attr:"無",
 size:"大",
 loc:"沙漠",
-mvp:true
+mvp:true,
+url:'30009'
 },
 
 
@@ -246,7 +267,8 @@ race:"植物",
 attr:"地",
 size:"中",
 loc:"斐楊南",
-mvp:false
+mvp:false,
+url:'20020'
 },
 {
 lv:70,
@@ -257,7 +279,8 @@ race:"動物",
 attr:"火",
 size:"大",
 loc:"斐楊樹林",
-mvp:true
+mvp:true,
+url:'30011'
 },
 {
 lv:70,
@@ -268,7 +291,8 @@ race:"動物",
 attr:"風",
 size:"大",
 loc:"斐楊樹林",
-mvp:false
+mvp:false,
+url:'20009'
 },
 {
 lv:70,
@@ -279,7 +303,8 @@ race:"人形",
 attr:"不死",
 size:"大",
 loc:"金字塔2F",
-mvp:false
+mvp:false,
+url:'20018'
 },
 {
 lv:73,
@@ -290,7 +315,8 @@ race:"不死",
 attr:"不死",
 size:"中",
 loc:"金字塔2F",
-mvp:true
+mvp:true,
+url:'30012'
 },
 {
 lv:74,
@@ -301,7 +327,8 @@ race:"不死",
 attr:"不死",
 size:"中",
 loc:"斐洞2F",
-mvp:false
+mvp:false,
+url:'20019'
 },
 
 {
@@ -313,7 +340,8 @@ race:"惡魔",
 attr:"火",
 size:"中",
 loc:"斐洞2F",
-mvp:true
+mvp:true,
+url:'30013'
 },
 {
 lv:78,
@@ -324,7 +352,8 @@ race:"人形",
 attr:"地",
 size:"小",
 loc:"獸人村",
-mvp:false
+mvp:false,
+url:'20010'
 },
 {
 lv:80,
@@ -335,7 +364,8 @@ race:"人形",
 attr:"地",
 size:"大",
 loc:"獸人村",
-mvp:true
+mvp:true,
+url:'30014'
 },
 {
 lv:80,
@@ -346,7 +376,8 @@ race:"人形",
 attr:"風",
 size:"中",
 loc:"克特森林",
-mvp:true
+mvp:true,
+url:'30024'
 },
 
 {
@@ -358,7 +389,8 @@ race:"無形",
 attr:"火",
 size:"中",
 loc:"吉芬地下",
-mvp:false
+mvp:false,
+url:'20011'
 },
 
 {
@@ -370,7 +402,8 @@ race:"惡魔",
 attr:"暗",
 size:"中",
 loc:"吉芬地下",
-mvp:true
+mvp:true,
+url:'30015'
 },
 
 {
@@ -382,7 +415,8 @@ race:"動物",
 attr:"暗",
 size:"大",
 loc:"斐楊南",
-mvp:true
+mvp:true,
+url:'30023'
 },
 
 {
@@ -394,7 +428,8 @@ race:"龍",
 attr:"火",
 size:"大",
 loc:"古城郊外",
-mvp:false
+mvp:false,
+url:'20012'
 },
 {
 lv:86,
@@ -405,7 +440,8 @@ race:"人形",
 attr:"地",
 size:"大",
 loc:"獸人洞窟",
-mvp:true
+mvp:true,
+url:'30016'
 },
 {
 lv:86,
@@ -416,7 +452,8 @@ race:"植物",
 attr:"地",
 size:"小",
 loc:"北門",
-mvp:false
+mvp:false,
+url:'20023'
 },
 {
 lv:90,
@@ -427,7 +464,8 @@ race:"龍",
 attr:"暗",
 size:"大",
 loc:"古城郊外",
-mvp:true
+mvp:true,
+url:'30017'
 },
 
 {
@@ -439,7 +477,8 @@ race:"惡魔",
 attr:"無",
 size:"大",
 loc:"古城",
-mvp:false
+mvp:false,
+url:'20013'
 },
 
 {
@@ -451,7 +490,8 @@ race:"人形",
 attr:"無",
 size:"中",
 loc:"古城騎士團",
-mvp:false
+mvp:false,
+url:'20015'
 },
 {
 lv:93,
@@ -462,7 +502,8 @@ race:"惡魔",
 attr:"無",
 size:"大",
 loc:"古城",
-mvp:true
+mvp:true,
+url:'30018'
 },
 
 {
@@ -474,7 +515,8 @@ race:"人形",
 attr:"無",
 size:"中",
 loc:"古城大聽",
-mvp:false
+mvp:false,
+url:'20016'
 },
 {
 lv:95,
@@ -485,7 +527,8 @@ race:"無形",
 attr:"暗",
 size:"大",
 loc:"古城下水道",
-mvp:false
+mvp:false,
+url:'20014'
 },
 
 {
@@ -497,7 +540,8 @@ race:"無形",
 attr:"暗",
 size:"大",
 loc:"古城下水道",
-mvp:true
+mvp:true,
+url:'30020'
 },
 {
 lv:98,	
@@ -508,7 +552,8 @@ race:"惡魔",
 attr:"不死",
 size:"大",
 loc:"古城墓地",
-mvp:false
+mvp:false,
+url:'20022'
 },
 
 {
@@ -520,7 +565,8 @@ race:"惡魔",
 attr:"暗",
 size:"大",
 loc:"古城大廳",
-mvp:true
+mvp:true,
+url:'30021'
 },
 {
 lv:100,
@@ -531,7 +577,8 @@ race:"惡魔",
 attr:"不死",
 size:"大",
 loc:"古城墓地",
-mvp:true
+mvp:true,
+url:'30029'
 },
 {
 lv:95,
@@ -542,7 +589,8 @@ race:"動物",
 attr:"火",
 size:"大",
 loc:"古城大廳",
-mvp:true
+mvp:true,
+url:'30019'
 },
 {
 lv:100,
@@ -553,7 +601,8 @@ race:"天使",
 attr:"聖",
 size:"大",
 loc:"古城大廳",
-mvp:true
+mvp:true,
+url:'30032'
 },
 {
 lv:100,
@@ -564,7 +613,8 @@ race:"惡魔",
 attr:"暗",
 size:"大",
 loc:"古城大廳",
-mvp:true
+mvp:true,
+url:'30031'
 },
 {
 lv:100,
@@ -575,7 +625,8 @@ race:"惡魔",
 attr:"暗",
 size:"中",
 loc:"古城大廳",
-mvp:true
+mvp:true,
+url:'30030'
 },
 {
 lv:105,
@@ -586,7 +637,8 @@ race:"無形",
 attr:"地",
 size:"中",
 loc:"鐘塔1F",
-mvp:false
+mvp:false,
+url:'20024'
 },
 
 {
@@ -598,7 +650,8 @@ race:"無形",
 attr:"無",
 size:"大",
 loc:"鐘塔2F",
-mvp:false
+mvp:false,
+url:'20025'
 },
 {
 lv:110,
@@ -609,7 +662,8 @@ race:"惡魔",
 attr:"無",
 size:"大",
 loc:"鐘塔2F",
-mvp:true
+mvp:true,
+url:'30033'
 },
 
 {
@@ -621,7 +675,8 @@ race:"人形",
 attr:"水",
 size:"中",
 loc:"鐘塔地下",
-mvp:true
+mvp:true,
+url:'30034'
 },
 
 {
@@ -633,7 +688,8 @@ race:"人形",
 attr:"火",
 size:"中",
 loc:"玩具工場2F",
-mvp:false
+mvp:false,
+url:'20026'
 },
 
 {
@@ -645,7 +701,8 @@ race:"無形",
 attr:"風",
 size:"大",
 loc:"玩具工場1F",
-mvp:true
+mvp:true,
+url:'30040'
 },
 ]
 

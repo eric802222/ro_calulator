@@ -74,7 +74,20 @@
 </div>
 
 <div class="col">
+<input id="ckb_show" type="checkbox"><label for="ckb_show" title="現身後,持續顯示1分鐘">現身計時</label><select id="sel_showtime">
+<option value="0" selected>0</option>
+<option value="1">1</option>
+<option value="5">5</option>
+<option value="10">10</option>
+</select>分鐘</span></span>
+</div>
+
+<div class="col">
 <input id="ckb_tts" type="checkbox"><label for="ckb_tts">谷哥小姐提醒 (實驗中)</label>
+</div>
+
+<div class="col">
+現身語音:<input id="txt_coming" type="text" value="請準備,[BOSS]">
 </div>
 
 <div class="clear"></div>
@@ -145,12 +158,18 @@ h1{margin:10px 5px;}
 background-position:center;
 background-repeat:no-repeat;
 font-size:10px;
+
+}
+
+.mon .time_wrap{
 -webkit-filter:grayscale(1);
 }
+.mon.count .time_wrap{
+-webkit-filter:none}
 
 #min{clear:both}
 .mon img{opacity:0.5;width:80px;pointer-events: none;}
-.mon.count{-webkit-filter:none}
+
 .mon.count img{opacity:1}
 .mon .time_wrap{position:relative;height:80px;cursor:pointer;}
 .mon .time{position:absolute;bottom:3px;left:4px; width:72px;display:block;line-height:24px;
@@ -207,13 +226,15 @@ font-family:"none";
     overflow: hidden;
 	font-family:"Arial";
 	padding:2px 0px;
-	color:#bbb
-}
-.ckb_name .count .name,
-.ckb_loc  .count .loc{
-	color:#555
+	color:#bbb;
 }
 
+.ckb_name .count .name,
+.ckb_loc .count .loc{
+	color:#555;
+}
+.ckb_name .name a{color:#5a8a9f}
+#queue .name a{color:#fff}
 #sel_alert{vertical-align:text-top}
 #sel_showtime{margin:0px 5px;}
 
@@ -400,7 +421,7 @@ $mon.html(
 "<span class='race'>"+mons[i].race+"</span>"+
 "<span class='attr'>"+mons[i].attr+"</span>"+
 "<span class='size'>"+mons[i].size+"</span>"+
-"</div><div class='name'>"+nameTrim(mons[i].name)+"</div>"+
+"</div><div class='name'><a target='_blank' href='https://ro.fws.tw/db/monsters/info/"+mons[i].url+"'>"+nameTrim(mons[i].name)+"</a></div>"+
 "<div class='loc'>"+mons[i].loc+"</div>");
 
 if(getCookie(i)!=null){
@@ -409,8 +430,8 @@ mon_time[i].setTime(getCookie(i));
 $mon.addClass("count");
 }
 
-$mon.click(function(e){
-monClick(e,$(this).data("index"));
+$mon.find(".cover").click(function(e){
+monClick(e,$(this).closest(".mon").data("index"));
 });
 
 $mon.on( 'touchstart', function( e ) {
@@ -761,7 +782,7 @@ if(!$(".mon_"+i).hasClass("played")){
 
 	$(".mon_"+i).addClass("played");
 	
-	delayTTS("請準備,"+mons[i].name,0);
+	delayTTS($("#txt_coming").val().replace("[BOSS]",mons[i].name),0);
 	if(repeats>0)playsound();
 	
 	/*ajaxAudio(encodeURI(mons[i].name+"還有1分半"))
