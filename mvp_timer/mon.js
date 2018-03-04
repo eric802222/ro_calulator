@@ -470,7 +470,7 @@ url:'30017'
 
 {
 lv:90,
-name:"顎梟首領",
+name:"鶚梟首領",
 img:"owl_duke",
 time:30,
 race:"惡魔",
