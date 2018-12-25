@@ -179,11 +179,14 @@ h1
 	.label
 		position: absolute
 		top: 40%
-		background: #3E86BD
+		background: #999
 		padding: 1px 4px
 		padding-left: 9px
 		color: #FFF
 		font-weight: 700
+		z-index: 1
+	&.count .label
+		background: #3E86BD
 
 .show .showing
 	width: 100%
@@ -267,7 +270,7 @@ label
 	border: #ACD3F1 solid 3px
 	box-sizing: border-box
 	box-shadow: inset 0 0 0 2px rgba(255,255,255,.65)
-	z-index: 1
+	z-index: 2
 	.mini &
 		border: #DDD solid 3px
 	.mvp &
