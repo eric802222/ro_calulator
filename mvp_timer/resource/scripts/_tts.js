@@ -21,7 +21,7 @@ _tts.speak = function (txt, time)
 			}
 			else
 			{
-				_tts.speak(_txt, 500);
+				_tts.speak(_txt, 200);
 			}
 		}, time);
 	}
