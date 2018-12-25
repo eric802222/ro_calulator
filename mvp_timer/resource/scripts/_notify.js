@@ -10,7 +10,7 @@ _notify.show = function (mons, type)
 				var n = new Notification("[" + mons.name + "] " + type + "!",
 					{
 						body : "[" + mons.loc + "] " + mons.race + "/" + mons.attr + "/" + mons.size,
-						icon : "img/" + mons.img + ".png",
+						icon : "img/mon/" + mons.img + ".png",
 					}
 					);
 				n.onshow = function ()

@@ -22,15 +22,20 @@ body
 	user-select: none
 
 input,select
-	font-size: 16px !important
+	font-size: 13px !important
 	line-height: 16px
-	
+	padding: 0px 2px
+	vertical-align: top
+	border: 1px solid #555
+	height: 20px
+	margin: 0px 3px
+	@include tablet
+		font-size: 16px !important
 select
 	-webkit-appearance: none
 	font-family: "Microsoft JhengHei"
 	background: url('../img/select_drop.png') right bottom no-repeat
 	background-color: #FFF
-	border: 1px solid #555
 	border-radius: 0px
 	vertical-align: text-bottom
 	padding: 0px 5px
@@ -89,28 +94,48 @@ h1
 	background-repeat: no-repeat
 	font-size: 10px
 	.time_wrap
-		-webkit-filter: grayscale(1)
 		position: relative
 		height: 80px
 		cursor: pointer
-	
-	&.count .time_wrap
-		-webkit-filter: none
+		overflow: hidden
+		border-radius: 10px
+
 
 	img
+		-webkit-filter: grayscale(1)
 		opacity: 0.5
 		width: 80px
 		pointer-events: none
+		background: #E5ECF3
+		box-shadow: inset 0 0 0 5px #FFF
+		border-radius: 10px
+		box-sizing: border-box
+		overflow: hidden
 
 	&.count img
+		-webkit-filter: none
 		opacity: 1
-
+	.mark
+		width: 26px
+		height: 26px
+		position: absolute
+		background-size: contain
+		background-position: center
+		z-index: 1
+		pointer-events: none
+		filter: contrast(0.5) brightness(1.5) grayscale(1)
+	&.mvp .mark
+			background-image: url('../img/mvp_m.png')
+	&.mini .mark
+			background-image: url('../img/mini_m.png')
+	&.count .mark
+		filter: none
 	.time
 		display: none
 		position: absolute
 		bottom: 3px
-		left: 4px
-		width: 72px
+		left: 3px
+		width: 74px
 		line-height: 24px
 		text-shadow: white 0px 2px,white 2px 0px,white -2px 0px, white 0px -2px,white -1.4px -1.4px, white 1.4px 1.4px, white 1.4px -1.4px,white -1.4px 1.4px 
 		font-weight: bold
@@ -141,11 +166,20 @@ h1
 		display: none
 	.race, .attr, .size
 		text-shadow: white 0px 1px, white 1px 0px, white -1px 0px, white 0px -1px, white -1px -1px, white 1px 1px,  white 1px -1px, white -1px 1px
+		z-index: 1
 	.ckb_info & .race,
 	.ckb_info & .attr,
 	.ckb_info & .size
 		display: block
 		font-family: "none"
+	.label
+		position: absolute
+		top: 40%
+		background: #3E86BD
+		padding: 1px 4px
+		padding-left: 9px
+		color: #FFF
+		font-weight: 700
 
 .show .showing
 	width: 100%
@@ -204,7 +238,7 @@ label
 .time
 	.show &, .ready &, .last &
 		line-height: 29px
-		font-size: 24
+		font-size: 22
 		bottom: 0px
 		background: transparent	
 	.ready &
@@ -226,14 +260,25 @@ label
 	top: 0px
 	position: absolute
 	border-radius: 10px
+	border: #ACD3F1 solid 3px
+	box-sizing: border-box
+	box-shadow: inset 0 0 0 2px rgba(255,255,255,.65)
 	z-index: 1
+	.mini &
+		border: #DDD solid 3px
+	.mvp &
+		border: #999 solid 3px
+	.count &
+		border: #7fb2c9 solid 3px
 	.ready &
-		background: rgba(255,200,0,0.5)
+		background: rgba(255,200,0,0.4)
+		border: #ffc107 solid 3px
 	.last &
-		background: rgba(255,0,0,0.4)
+		background: rgba(255,0,0,0.3)
+		border: #f44336 solid 3px
 	.show &
-		background: rgba(0,255,0,0.35)
-
+		background: rgba(0,255,0,0.3)
+		border: #4caf50 solid 3px
 
 #coder
 	font-size: 14px
@@ -248,7 +293,7 @@ label
 	
 	
 .clear
-	clear:both
+	clear: both
 
 
 #queue
@@ -262,6 +307,7 @@ label
 	-ms-transition: bottom 500ms
 	-moz-transition: bottom 500ms
 	-webkit-transition: bottom 500ms
+	z-index: 10
 	@include miniDesk
 		left: 0%
 		width: 100%
@@ -345,6 +391,7 @@ label
 		border-radius: 5px
 		box-sizing: border-box
 		line-height: 22px
+		height: 42px
 		@include tablet
 			width: 100%
 			float: none

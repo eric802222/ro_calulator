@@ -78,7 +78,7 @@ _setting.init = function ()
 	_setting.genCBK('isShowLoc', "ckb_loc", true);
 	_setting.genCBK('isShowName', "ckb_name", true);
 	_setting.genCBK('isShowNotify', "ckb_notify", true);
-	_setting.genCBK('isTTS', "ckb_show", true);
+	_setting.genCBK('isTTS', "ckb_tts", true);
 
 	//_setting.genCBK('isShowQueue',"ckb_queue",true);
 
@@ -94,8 +94,8 @@ _setting.init = function ()
 	_setting.genVAL('readyTime', 'sel_readytime', 2);
 
 	//語音文字:
-	_setting.genVAL('txtMonShow', 'txt_showing', "請準備,[BOSS]");
-	_setting.genVAL('txtMonReady', 'txt_coming', "走了,[BOSS]已現身");
+	_setting.genVAL('txtMonShow', 'txt_showing', "走了,[BOSS]已現身");
+	_setting.genVAL('txtMonReady', 'txt_coming', "請準備,[BOSS]");
 
 }
 

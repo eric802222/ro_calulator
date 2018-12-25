@@ -68,7 +68,6 @@
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="5">5</option>
-				<option value="10">10</option>
 				</select>
 				分鐘
 				</div>
@@ -81,7 +80,6 @@
 				<option value="2">2</option>
 				<option value="3">3</option>
 				<option value="5">5</option>
-				<option value="10">10</option>
 				</select>
 				分鐘
 				</div>
@@ -96,11 +94,11 @@
 
 				<div class="col">
 				準備語音:
-				<input id="txt_coming" type="text" value="請準備,[BOSS]">
+				<input id="txt_coming" type="text" value="">
 				</div>
 				<div class="col">
 				現身語音:
-				<input id="txt_showing" type="text" value="走了,[BOSS]已現身">
+				<input id="txt_showing" type="text" value="">
 				</div>
 				
 				<div class="col">
@@ -128,9 +126,7 @@
 			<div class="clear"></div >
 		</div>
 		
-		<div id="min"></div>
-		<hr/>
-		<div id="mvp"></div>
+		<span id="min"></span><span id="mvp"></span>
 		
 		<div id="queue">
 			<h4>現身排序</h4>
@@ -204,7 +200,7 @@ function heartbeat(){
 			if(!$('body').hasClass('ckb_queue'))$('body').addClass('ckb_queue')
 			
 			//計時中
-			if(diffTime>0){
+			if(diffTime>=0){
 				if(!$(".mon_"+i).hasClass("count"))$(".mon_"+i).addClass("count");
 				$(".mon_"+i).find(".time").html(addZero(hr)+":"+addZero(min)+":"+addZero(sec));
 			}

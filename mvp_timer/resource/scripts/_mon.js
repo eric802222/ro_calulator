@@ -24,14 +24,16 @@ _mon.init = function ()
 				"class" : "mon mon_" + i + " m_" + mons[i].img,
 				"data-time" : mons[i].time,
 				"data-count" : 9999,
-				"title" : "LV." + mons[i].lv + " " + _mon.nameTrim(mons[i].name)
+				"title" : "LV." + mons[i].lv + " " + _mon.nameTrim(mons[i].name) + " ["+mons[i].race+"/"+ mons[i].attr +"/"+ mons[i].size +"]"
 			}
 			);
 		$mon.html(
 			"<div class='time_wrap'>"
 			 + "<div class='cover'></div>"
 			 + "<div class='showing'></div>"
-			 + "<img src='img/" + mons[i].img + ".png'>"
+			 + "<div class='mark'></div>"
+			 + (mons[i].label ? "<div class='label'>"+mons[i].label+"</div>" : '')
+			 + "<img src='img/mon/" + mons[i].img + ".png?v=2'>"
 			 + "<span class='time'></span>"
 			 + "<span class='race'>" + mons[i].race + "</span>"
 			 + "<span class='attr'>" + mons[i].attr + "</span>"
@@ -85,11 +87,11 @@ _mon.init = function ()
 		//怪物分類
 		if (mons[i].mvp)
 		{
-			$mon.appendTo($("#mvp"));
+			$mon.addClass('mvp').appendTo($("#mvp"));
 		}
 		else
 		{
-			$mon.appendTo($("#min"));
+			$mon.addClass('mini').appendTo($("#min"));
 		}
 
 		//佇列: 事件監聽
@@ -151,11 +153,7 @@ _mon.click = function (e, id)
 	}
 	else
 	{
-		if ($(".mon_" + id).hasClass("show"))
-		{
-				_mon.reset(id);
-				_mon.setTime(id, time);
-		}
+		var isShown = $(".mon_" + id).hasClass("show");
 		//雙擊怪物
 		if (_mon.dbclick_id == -1)
 		{
@@ -164,10 +162,16 @@ _mon.click = function (e, id)
 			_mon.dbclick_timer = setTimeout(function ()
 				{
 					_mon.dbclick_id = -1;
+					if (isShown)
+					{
+						_mon.reset(id);
+						_mon.setTime(id, time);
+					}
 				}, 400);
 		}
 		else if (_mon.dbclick_id == id)
 		{
+			clearTimeout(_mon.dbclick_timer);
 			$(".mon_" + id).addClass("reset");
 			$(".mon_" + id).removeClass("count");
 			_mon.dbclick_id = -1;
