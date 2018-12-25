@@ -175,9 +175,10 @@ _mon.click = function (e, id)
 			$(".mon_" + id).addClass("reset");
 			$(".mon_" + id).removeClass("count");
 			_mon.dbclick_id = -1;
-			e.preventDefault();
+			
 		}
 	}
+	e.preventDefault();
 }
 
 _mon.reset = function (i)
