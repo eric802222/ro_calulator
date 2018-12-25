@@ -1,0 +1,428 @@
+$padWidth: 768px
+$miniDeskWidth: 1280px
+
+@mixin tablet
+	@media screen and (max-width: $padWidth)
+		@content
+@mixin miniDesk
+	@media screen and (max-width: $miniDeskWidth)
+		@content		
+	
+html,body
+	font-family: consolas, monospace ,'Noto Sans TC',"Microsoft JhengHei"
+	max-width: 1280px
+	margin: 10px auto
+body
+	color: #414141
+	-webkit-touch-callout: none
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+
+input,select
+	font-size: 13px !important
+	line-height: 16px
+	padding: 0px 2px
+	vertical-align: top
+	border: 1px solid #555
+	height: 20px
+	margin: 0px 3px
+	@include tablet
+		font-size: 16px !important
+select
+	-webkit-appearance: none
+	font-family: "Microsoft JhengHei"
+	background: url('../img/select_drop.png') right bottom no-repeat
+	background-color: #FFF
+	border-radius: 0px
+	vertical-align: text-bottom
+	padding: 0px 5px
+	height: 20px
+	box-sizing: border-box
+	margin: 0px
+
+audio,#mobile_play,#setting
+	display: none
+	
+
+
+.mobile
+	display: none
+	@include tablet
+		display: inline
+
+
+#mim,#mvp
+	clear:both
+
+#page
+	padding-bottom: 150px
+	@include tablet
+		margin: 0px 10px
+#help
+	margin: 0px 5px
+h1
+	margin: 10px 5px
+	@include tablet
+		text-align: center
+		margin-bottom: 10px
+		span
+			display: block
+	a
+		font-size: 16px
+
+#help 
+	.left
+		float: left
+		color: #6f6f6f
+		margin: 0px 0px
+	.right
+		float: right
+		text-align: right
+		margin: 5px 0px
+		
+		
+		
+.mon
+	display: inline-block
+	width: 80px
+	margin: 5px
+	text-align: center
+	background-position: center
+	background-repeat: no-repeat
+	font-size: 10px
+	.time_wrap
+		position: relative
+		height: 80px
+		cursor: pointer
+		overflow: hidden
+		border-radius: 10px
+
+
+	img
+		-webkit-filter: grayscale(1)
+		opacity: 0.5
+		width: 80px
+		pointer-events: none
+		background: #E5ECF3
+		box-shadow: inset 0 0 0 5px #FFF
+		border-radius: 10px
+		box-sizing: border-box
+		overflow: hidden
+
+	&.count img
+		-webkit-filter: none
+		opacity: 1
+	.mark
+		width: 26px
+		height: 26px
+		position: absolute
+		background-size: contain
+		background-position: center
+		z-index: 1
+		pointer-events: none
+		filter: contrast(0.5) brightness(1.5) grayscale(1)
+	&.mvp .mark
+			background-image: url('../img/mvp_m.png')
+	&.mini .mark
+			background-image: url('../img/mini_m.png')
+	&.count .mark
+		filter: none
+	.time
+		display: none
+		position: absolute
+		bottom: 3px
+		left: 3px
+		width: 74px
+		line-height: 24px
+		text-shadow: white 0px 2px,white 2px 0px,white -2px 0px, white 0px -2px,white -1.4px -1.4px, white 1.4px 1.4px, white 1.4px -1.4px,white -1.4px 1.4px 
+		font-weight: bold
+		font-size: 15px
+		background: rgba(255,255,255,0.6)
+		border-radius: 0px 0px 8px 8px
+		z-index: 2
+		pointer-events: none
+	&.count .time
+		display: block
+	.race
+		position: absolute
+		right: 5px
+		top: 4px
+		line-height: 16px
+		display: none
+	.attr
+		position: absolute
+		right: 5px
+		top: 20px
+		line-height: 16px
+		display: none
+	.size
+		position: absolute
+		right: 5px
+		top: 36px
+		line-height: 16px
+		display: none
+	.race, .attr, .size
+		text-shadow: white 0px 1px, white 1px 0px, white -1px 0px, white 0px -1px, white -1px -1px, white 1px 1px,  white 1px -1px, white -1px 1px
+		z-index: 1
+	.ckb_info & .race,
+	.ckb_info & .attr,
+	.ckb_info & .size
+		display: block
+		font-family: "none"
+	.label
+		position: absolute
+		top: 40%
+		background: #3E86BD
+		padding: 1px 4px
+		padding-left: 9px
+		color: #FFF
+		font-weight: 700
+
+.show .showing
+	width: 100%
+	height: 100%
+	background: url("../img/showing.png")
+	background-size: 100%
+	position: absolute
+	top: 0px
+	left: 0px
+	z-index: 3
+	pointer-events: none
+
+label
+	cursor:pointer
+
+.loc
+	display: none
+	.ckb_loc &
+		display: block
+		white-space: nowrap
+		text-overflow: ellipsis
+		overflow: hidden
+		font-family: "Arial"
+		padding: 2px 0px
+		color: #bbb
+	.ckb_loc .count &
+		color: #555
+
+
+.name
+	display: none
+	.ckb_name &
+		display: block
+		white-space: nowrap
+		text-overflow: ellipsis
+		overflow: hidden
+		font-family: "Arial"
+		padding: 2px 0px
+		color: #bbb
+	.ckb_name .count &
+		color: #555
+	
+.ckb_name .name a
+	color: #5a8a9f
+	
+#queue .name a
+	color: #fff
+	
+#sel_alert
+	vertical-align: text-top
+	@include tablet
+		vertical-align: middle
+#sel_showtime
+	margin: 0px 5px
+
+.time
+	.show &, .ready &, .last &
+		line-height: 29px
+		font-size: 22
+		bottom: 0px
+		background: transparent	
+	.ready &
+		color: #f60
+	.last &
+		color: #F00
+	.show &
+		color: #090
+		.onshow
+			font-size: 12px
+			display: block
+			line-height: 14px
+			font-family: "none"
+
+.cover
+	width: 100%
+	height: 100%
+	left: 0px
+	top: 0px
+	position: absolute
+	border-radius: 10px
+	border: #ACD3F1 solid 3px
+	box-sizing: border-box
+	box-shadow: inset 0 0 0 2px rgba(255,255,255,.65)
+	z-index: 1
+	.mini &
+		border: #DDD solid 3px
+	.mvp &
+		border: #999 solid 3px
+	.count &
+		border: #7fb2c9 solid 3px
+	.ready &
+		background: rgba(255,200,0,0.4)
+		border: #ffc107 solid 3px
+	.last &
+		background: rgba(255,0,0,0.3)
+		border: #f44336 solid 3px
+	.show &
+		background: rgba(0,255,0,0.3)
+		border: #4caf50 solid 3px
+
+#coder
+	font-size: 14px
+	
+#ico_alarm
+	vertical-align: text-top
+	margin: 2px 3px
+	margin-right: 6px
+	@include tablet
+		vertical-align: middle
+
+	
+	
+.clear
+	clear: both
+
+
+#queue
+	position: fixed
+	bottom: -500px
+	left: 50%
+	width: 1280px
+	margin-left: -640px
+	transition: bottom 500ms
+	-o-transition: bottom 500ms
+	-ms-transition: bottom 500ms
+	-moz-transition: bottom 500ms
+	-webkit-transition: bottom 500ms
+	z-index: 10
+	@include miniDesk
+		left: 0%
+		width: 100%
+		margin-left: 0px
+		box-sizing: border-box
+	.wrap
+		width: 100%
+		white-space: nowrap
+		overflow-x: auto
+		overflow-y: visible
+		background: #555 
+		padding: 10px 0px
+		&::-webkit-scrollbar 
+			height: 5px
+		&::-webkit-scrollbar-track 
+			background: rgba(0,0,0,.2)
+		&::-webkit-scrollbar-thumb
+			background: rgba(0,0,0,.5)
+		@include miniDesk
+			padding: 10px 10px
+	h4
+		background: #555
+		margin: 0px
+		display: inline-block
+		padding: 5px 10px
+		color:#FFF
+		width: 100px
+		position: relative
+		left: 50%
+		margin-left: -60px
+		top: 0px
+		text-align: center
+		border-radius: 10px 10px 0px 0px
+		font-weight: normal
+		cursor: pointer
+
+
+	.mon
+		display: none
+		&.count
+			display: inline-block
+		&.reset
+			display: none
+	.name, .loc
+		color:#FFF
+ 
+/* HELP*/
+#help
+	line-height: 36px
+	font-size: 16px
+	height: 0px
+	overflow: hidden
+	padding-top: 28px
+	margin: 0px 5px
+	position: relative
+	.left
+		float: left
+		position: absolute
+		top: 0px
+		@include tablet
+			float: none
+			position: relative
+			top: 0px
+
+	.right
+		display: none
+		float: none
+		text-align: left
+		border-bottom: 1px solid #414141
+		padding-bottom: 10px
+	&.on
+		height: auto
+		.right
+			display: block
+	.col
+		width: 33.3333%
+		float: left
+		background: #ddd
+		padding: 8px 5px
+		border: 3px solid #FFF
+		border-radius: 5px
+		box-sizing: border-box
+		line-height: 22px
+		height: 42px
+		@include tablet
+			width: 100%
+			float: none
+
+		
+#setting
+	position: absolute
+	right: 0px
+	top: 0px
+	display: block
+	cursor: pointer
+	padding: 3px
+	border-radius: 5px
+	background: #FFF
+	transition: 500ms
+	-o-transition: 500ms
+	-ms-transition: 500ms
+	-moz-transition: 500ms
+	-webkit-transition: 500ms
+	&:hover
+		background: #ddd
+		
+#ico_alarm
+	margin-right: 6px
+
+label
+	margin-left: 4px
+
+
+
+
+
+
+

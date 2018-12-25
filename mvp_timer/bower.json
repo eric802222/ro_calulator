@@ -1,0 +1,19 @@
+{
+  "name": "mvp_timer",
+  "description": "",
+  "main": "",
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery-mousewheel": "^3.1.13",
+    "gasparesganga-jquery-message-box": "^3.0.0",
+    "jquery": "1.11.3"
+  }
+}
