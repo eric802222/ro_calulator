@@ -4,7 +4,7 @@ _mon.time = [];
 _mon.longpress_delay = 600;
 _mon.longpress_timer;
 
-_mon.dbclick_timer;
+_mon.dbclick_timer=[];
 _mon.dbclick_id = -1;
 
 _mon.nameTrim = function (name)
@@ -155,11 +155,11 @@ _mon.click = function (e, id)
 	{
 		var isShown = $(".mon_" + id).hasClass("show");
 		//雙擊怪物
-		if (_mon.dbclick_id == -1)
+		if (_mon.dbclick_id != id)
 		{
 			_mon.dbclick_id = id;
-			clearTimeout(_mon.dbclick_timer);
-			_mon.dbclick_timer = setTimeout(function ()
+			clearTimeout(_mon.dbclick_timer[id]);
+			_mon.dbclick_timer[id] = setTimeout(function ()
 				{
 					_mon.dbclick_id = -1;
 					if (isShown)
@@ -171,7 +171,7 @@ _mon.click = function (e, id)
 		}
 		else if (_mon.dbclick_id == id)
 		{
-			clearTimeout(_mon.dbclick_timer);
+			clearTimeout(_mon.dbclick_timer[id]);
 			$(".mon_" + id).addClass("reset");
 			$(".mon_" + id).removeClass("count");
 			_mon.dbclick_id = -1;
