@@ -225,7 +225,7 @@ function heartbeat(){
 					audio3.playbackRate = 1.7;
 					audio3.play();
 					*/
-					_notify.show(mons[i],"即將現身");
+					if(_setting.isShowNotify)_notify.show(mons[i],"即將現身");
 				}
 			}
 			//已現身
