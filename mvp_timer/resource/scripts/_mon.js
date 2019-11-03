@@ -14,8 +14,9 @@ _mon.nameTrim = function (name)
 
 _mon.init = function ()
 {
-	for (var i in mons)
+	for (var i in monsort)
 	{
+		i=monsort[i];
 		_mon.time[i] = false;
 		$mon = $("<div/>",
 			{
@@ -228,10 +229,10 @@ _mon.saveHide = function(id,hideIt){
 		return;
 	}
 	var save = _cookie.get('hide');
-	console.log(Boolean(save));
+	
 	if(save){
 		var arr=save.toString().split(',');
-		console.log(arr);
+		
 		var index=-1;
 		for(var i in arr){
 			if(arr[i]==id){
@@ -243,7 +244,7 @@ _mon.saveHide = function(id,hideIt){
 		}else{
 			if(index!=-1)arr.splice(index,1);
 		}
-		console.log(arr);
+		
 		_cookie.set('hide',arr.join(','));
 	}else{
 		_cookie.set('hide',id);
