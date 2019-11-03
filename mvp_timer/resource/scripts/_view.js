@@ -5,11 +5,27 @@ _view.init = function ()
 	$("#setting").click(function ()
 	{
 		$("#help").toggleClass("on");
+		$("body").toggleClass("setting");
 	}
 	);
 	$("#queue h4").click(function ()
 	{
 		$("body").toggleClass("queue_hide");
+	}
+	);
+	$("#hide-all").click(function ()
+	{
+		if(!$(this).hasClass('off')){
+			$(this).addClass('off').attr('src','img/toggle_off.png');
+			$(".control-hide span").text("隱藏全部");
+			$(".mon").addClass("hide");
+			_mon.saveHide('all',true);
+		}else{
+			$(this).removeClass('off').attr('src','img/toggle_on.png');
+			$(".control-hide span").text("顯示全部");
+			$(".mon").removeClass("hide");
+			_mon.saveHide('all',false);
+		}
 	}
 	);
 	_view.sizeChg();

@@ -24,12 +24,13 @@ _mon.init = function ()
 				"class" : "mon mon_" + i + " m_" + mons[i].img,
 				"data-time" : mons[i].time,
 				"data-count" : 9999,
-				"title" : "LV." + mons[i].lv + " " + _mon.nameTrim(mons[i].name) + " ["+mons[i].race+"/"+ mons[i].attr +"/"+ mons[i].size +"]"
+				"title" : "LV." + mons[i].lv + " " + _mon.nameTrim(mons[i].name) +"/"+ mons[i].loc+ " ["+mons[i].race+"/"+ mons[i].attr +"/"+ mons[i].size +"] "
 			}
 			);
 		$mon.html(
 			"<div class='time_wrap'>"
 			 + "<div class='cover'></div>"
+			 + "<div class='btn_hide'></div>"
 			 + "<div class='showing'></div>"
 			 + "<div class='mark'></div>"
 			 + (mons[i].label ? "<div class='label'>"+mons[i].label+"</div>" : '')
@@ -53,6 +54,14 @@ _mon.init = function ()
 			_mon.time[i].setTime(_cookie.get(i));
 			$mon.addClass("count");
 		}
+		
+		//控制隱藏
+		if(_mon.isHide(i))$mon.addClass('hide');
+		$mon.find(".btn_hide").click(function (e)
+		{
+			_mon.hideClick(e, $(this).closest(".mon").data("index"));
+		}
+		);
 
 		//怪物: 事件監聽
 		$mon.find(".cover").click(function (e)
@@ -93,6 +102,11 @@ _mon.init = function ()
 		{
 			$mon.addClass('mini').appendTo($("#min"));
 		}
+		
+		if(i.indexOf("_") > -1){
+			$mon.insertAfter( $("#mon_"+i.split("_")[0]) );
+		}
+		
 
 		//佇列: 事件監聽
 		$qMon = $mon.clone();
@@ -179,6 +193,61 @@ _mon.click = function (e, id)
 		}
 	}
 	e.preventDefault();
+}
+
+//控制隱藏
+_mon.hideClick = function (e, id){
+	$(".mon_" + id).toggleClass('hide');
+	_mon.saveHide(id,$(".mon_" + id).hasClass('hide'));
+}
+_mon.isHide = function(id){
+	var hidelist = _cookie.get('hide');
+	if(hidelist){
+		var arr=hidelist.toString().split(',');
+		var index=-1;
+		for(var i in arr){
+			if(arr[i]==id){
+				return true;
+			}
+		}
+	}else{
+		return false;
+	}
+}
+_mon.saveHide = function(id,hideIt){
+	if(id=="all"){
+		if(hideIt){
+			var arr=[];
+			for(var i in mons){
+				arr.push(i);
+			}
+			_cookie.set('hide',arr.join(','));
+		}else{
+			_cookie.set('hide','');
+		}
+		return;
+	}
+	var save = _cookie.get('hide');
+	console.log(Boolean(save));
+	if(save){
+		var arr=save.toString().split(',');
+		console.log(arr);
+		var index=-1;
+		for(var i in arr){
+			if(arr[i]==id){
+				index=i;
+			}
+		}
+		if(hideIt){
+			if(index==-1)arr.push(id);
+		}else{
+			if(index!=-1)arr.splice(index,1);
+		}
+		console.log(arr);
+		_cookie.set('hide',arr.join(','));
+	}else{
+		_cookie.set('hide',id);
+	}
 }
 
 _mon.reset = function (i)
