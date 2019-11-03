@@ -14,7 +14,7 @@ _mon.nameTrim = function (name)
 
 _mon.init = function ()
 {
-	for (var i = 0; i < mons.length; i++)
+	for (var i in mons)
 	{
 		_mon.time[i] = false;
 		$mon = $("<div/>",

@@ -176,7 +176,7 @@ $(window).resize(_view.sizeChg);
 function heartbeat(){
 	var now = new Date();
 	var mqueue=[]
-	for(var i=0;i<mons.length;i++){
+	for(var i in mons){
 
 		if($(".mon_"+i).hasClass("reset")){
 			_mon.reset(i);

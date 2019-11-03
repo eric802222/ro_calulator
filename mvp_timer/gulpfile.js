@@ -12,22 +12,34 @@ gulp.task('sass', function(){
 	.pipe(cleanCSS({compatibility: 'ie8'}))
   .pipe(rename({suffix: '.min'}))
 	.pipe(gulp.dest('css/')); /*要輸出的檔案,讓它輸出到source文件夾的上層*/
+	return new Promise(function(resolve, reject) {
+    console.log("SASS DONE");
+    resolve();
+  });
 });
 	
-gulp.task('merge-js', function (){
+gulp.task('merge-js',function (){
     gulp.src('resource/scripts/**/*.js')
       .pipe(concat('main.js'))
 	    //.pipe(gulp.dest('js/'))
       .pipe(rename({ suffix: '.min' }))
       .pipe(uglify())
       .pipe(gulp.dest('js/'));
+	return new Promise(function(resolve, reject) {
+    console.log("MergeJS DONE");
+    resolve();
+  });
 });
 
-gulp.task('copy',  function() {
+gulp.task('copy', function() {
   gulp.src('bower_components/jquery/dist/jquery.min.js').pipe(gulp.dest('vendor/jquery/'))
   gulp.src('bower_components/jquery-mousewheel/jquery.mousewheel.min.js').pipe(gulp.dest('vendor/jquery-mousewheel/'))
   gulp.src('bower_components/gasparesganga-jquery-message-box/dist/messagebox.min.css').pipe(gulp.dest('vendor/jquery-messagebox/'))
   gulp.src('bower_components/gasparesganga-jquery-message-box/dist/messagebox.min.js').pipe(gulp.dest('vendor/jquery-messagebox/'))
+	return new Promise(function(resolve, reject) {
+    console.log("Copy DONE");
+    resolve();
+  });
 });
 
  
@@ -37,6 +49,10 @@ gulp.task('version', function() {
 					paramType: 'timestamp'
 				}))
         .pipe(gulp.dest('./'));
+	return new Promise(function(resolve, reject) {
+    console.log("version DONE");
+    resolve();
+  });
 });
 
-gulp.task('default', ['copy', 'merge-js', 'sass','version']); /*執行gulp時一併執行sass cp 和watch的指令 */
+gulp.task('default',gulp.series('sass','copy','merge-js','version')); /*執行gulp時一併執行sass cp 和watch的指令 */

@@ -9,13 +9,16 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "gulp": "^3.9.1",
+    "bower": "^1.8.8",
+    "gulp": "^4.0.0",
     "gulp-clean-css": "^4.0.0",
     "gulp-concat": "^2.6.1",
     "gulp-html-version": "^1.0.2",
     "gulp-minify-css": "^1.2.4",
     "gulp-rename": "^1.4.0",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify": "^3.0.1"
-  }
+    "gulp-uglify": "^3.0.1",
+    "node-sass": "^4.13.0"
+  },
+  "dependencies": {}
 }
