@@ -191,7 +191,7 @@ var mons={
       "race":"動物",
       "attr":"地",
       "size":"中",
-      "loc":"蘇克拉特沙漠",
+      "loc":"沙漠",
       "mvp":false,
       "url":"20008"
    },
@@ -407,7 +407,7 @@ var mons={
       "race":"人形",
       "attr":"火",
       "size":"中",
-      "loc":"火洞2F",
+      "loc":"熔岩2F",
       "mvp":false,
       "url":"20027"
    },
@@ -563,7 +563,7 @@ var mons={
       "race":"動物",
       "attr":"無",
       "size":"大",
-      "loc":"蘇克拉特沙漠",
+      "loc":"沙漠",
       "mvp":true,
       "url":"30009"
    },
@@ -599,7 +599,7 @@ var mons={
       "race":"惡魔",
       "attr":"火",
       "size":"中",
-      "loc":"斐洞2F",
+      "loc":"斐揚洞2F",
       "mvp":true,
       "url":"30013"
    },
@@ -635,7 +635,7 @@ var mons={
       "race":"人形",
       "attr":"地",
       "size":"大",
-      "loc":"獸人洞窟",
+      "loc":"獸人洞",
       "mvp":true,
       "url":"30016"
    },
@@ -708,7 +708,7 @@ var mons={
       "race":"動物",
       "attr":"暗",
       "size":"大",
-      "loc":"斐楊南",
+      "loc":"斐揚南",
       "mvp":true,
       "url":"30023"
    },
@@ -831,7 +831,7 @@ var mons={
       "race":"惡魔",
       "attr":"火",
       "size":"大",
-      "loc":"火洞2F",
+      "loc":"熔岩2F",
       "mvp":true,
       "url":"30044"
    },
@@ -843,7 +843,7 @@ var mons={
       "race":"天使",
       "attr":"聖",
       "size":"中",
-      "loc":"愛因布洛克原野",
+      "loc":"朱諾原野",
       "mvp":true,
       "url":"30045"
    },
@@ -891,7 +891,7 @@ var mons={
       "race":"人形",
       "attr":"念",
       "size":"中",
-      "loc":"研究所地下2F西",
+      "loc":"研究所2F西",
       "mvp":true,
       "url":"30051"
    },
@@ -903,7 +903,7 @@ var mons={
       "race":"人形",
       "attr":"風",
       "size":"中",
-      "loc":"研究所地下2F東",
+      "loc":"研究所2F東",
       "mvp":true,
       "url":"30052"
    },
@@ -915,7 +915,7 @@ var mons={
       "race":"人形",
       "attr":"毒",
       "size":"中",
-      "loc":"研究所地下1F",
+      "loc":"研究所1F",
       "mvp":true,
       "url":"30053"
    }
