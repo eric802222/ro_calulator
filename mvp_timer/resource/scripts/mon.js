@@ -443,7 +443,7 @@ var mons={
       "race":"人形",
       "attr":"火",
       "size":"中",
-      "loc":"研究所地下3F",
+      "loc":"研究所3F",
       "mvp":false,
       "url":"20030"
    },
@@ -455,7 +455,7 @@ var mons={
       "race":"人形",
       "attr":"地",
       "size":"中",
-      "loc":"研究所地下1F",
+      "loc":"研究所1F",
       "mvp":false,
       "url":"20031"
    },
