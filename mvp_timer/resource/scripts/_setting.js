@@ -42,8 +42,8 @@ _setting.genCBK = function (store, id, _default, callback)
 	{
 		_setting[store] = $(this).is(":checked");
 		_setting.change(id, _setting[store]);
-		if (mCallback !== undefined)
-			mCallback(_setting[store]);
+		if (mCallback !== undefined)mCallback(_setting[store]);
+		eventGA('設定',store,_setting[store]);
 	}
 	);
 }
