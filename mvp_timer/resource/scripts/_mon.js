@@ -223,8 +223,10 @@ _mon.saveHide = function(id,hideIt){
 				arr.push(i);
 			}
 			_cookie.set('hide',arr.join(','));
+			eventGA('編輯顯示','hide','all');
 		}else{
 			_cookie.set('hide','');
+			eventGA('編輯顯示','show','all');
 		}
 		return;
 	}
@@ -241,13 +243,15 @@ _mon.saveHide = function(id,hideIt){
 		}
 		if(hideIt){
 			if(index==-1)arr.push(id);
+			eventGA('編輯顯示','hide',mons[id].name);
 		}else{
 			if(index!=-1)arr.splice(index,1);
+			eventGA('編輯顯示','show',mons[id].name);
 		}
-		
 		_cookie.set('hide',arr.join(','));
 	}else{
 		_cookie.set('hide',id);
+		eventGA('編輯顯示','hide',mons[id].name);
 	}
 }
 

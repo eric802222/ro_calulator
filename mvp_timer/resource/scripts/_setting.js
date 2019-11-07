@@ -63,11 +63,11 @@ _setting.genVAL = function (store, id, _default, callback)
 	_setting[store] = $("#" + id).val();
 	$("#" + id).change(function ()
 	{
-
 		_setting[store] = $(this).val();
 		_cookie.set(id, _setting[store]);
-		if (mCallback !== undefined)
-			mCallback(_setting[store]);
+		if (mCallback !== undefined)mCallback(_setting[store]);
+		
+		eventGA('設定',store,$(this).val());
 	}
 	);
 }

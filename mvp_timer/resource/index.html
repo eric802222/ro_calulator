@@ -320,6 +320,13 @@ function sendGA(ec,el){
 		'event_label': el
 	});
 }
+//統計
+function eventGA(et,ec,el){
+	gtag('event', et, {
+		'event_category': ec,
+		'event_label': el
+	});
+}
 </script>
 
 
